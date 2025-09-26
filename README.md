@@ -2,7 +2,7 @@
 
 If it's broken, **I'll fix it**.\
 If it's slow, **I'll optimize it**.\
-If it doesn't exist, **I'll build it**.\
+If it doesn't exist, **I'll build it**.
 
 I specialize in the gray area where **product, data, and engineering** collide.
 I don't just write code; I design systems that translate business chaos into measurable outcomes. 
