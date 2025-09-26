@@ -1,8 +1,8 @@
 # 👨‍💻 Paolo Bietolini: A non-authorozed bio
 
-If it's broken, **I'll fix it**. </br>
-If it's slow, **I'll optimize it**. </br>
-If it doesn't exist, **I'll build it**. </br>
+If it's broken, **I'll fix it**.\
+If it's slow, **I'll optimize it**.\
+If it doesn't exist, **I'll build it**.\
 
 I specialize in the gray area where **product, data, and engineering** collide.
 I don't just write code; I design systems that translate business chaos into measurable outcomes. 
@@ -26,7 +26,10 @@ My focus is on tooling and infrastructure that makes the entire Go-To-Market and
   * **Whole Picture Architect:** I don't just fix the wire; I study the whole electrical grid.
     While I'm deeply technical, I refuse to be tunnel-visioned.
     Every solution I build is designed to be coherent with the overarching business logic; not just technically complete.
+    \
+    \
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmd6bjV0dzlzOXRyOWJ5bXBiczBkY2lyOHZoYnYwdDV2YXd0ZHl2cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EZr27ZbJwmjE9PGyLN/giphy.gif"></img>
+\
 ### Important Details
 | | |
 | :--- | :--- |
