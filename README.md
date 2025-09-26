@@ -1,4 +1,4 @@
-## 👨‍💻 Paolo Bietolini: A nonconsensual bio
+# 👨‍💻 Paolo Bietolini: A non-authorozed bio
 
 If it's broken, **I'll fix it**. 
 If it's slow, **I'll optimize it**. 
