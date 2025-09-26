@@ -28,7 +28,7 @@ My focus is on tooling and infrastructure that makes the entire Go-To-Market and
     Every solution I build is designed to be coherent with the overarching business logic; not just technically complete.
 
 ### Important Details
-
+| | |
 | :--- | :--- |
 | **Best Way to Contact** | Serious inquiries only, please connect on **[LinkedIn](https://www.linkedin.com/in/paolobietolini/)**. |
 | **Why Hire Me?** | I solve problems you didn't even know you had. |
