@@ -30,7 +30,9 @@ My focus is on tooling and infrastructure that makes the entire Go-To-Market and
     \
     \
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmd6bjV0dzlzOXRyOWJ5bXBiczBkY2lyOHZoYnYwdDV2YXd0ZHl2cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EZr27ZbJwmjE9PGyLN/giphy.gif"></img>
-\
+
+
+
 ### Important Details
 | | |
 | :--- | :--- |
