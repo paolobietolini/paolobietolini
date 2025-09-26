@@ -14,7 +14,7 @@ My focus is on tooling and infrastructure that makes the entire Go-To-Market and
 
   * **GTM & Data Infrastructure:** I build community-focused **Go-To-Market templates** and high-grade **data collection tools** that standardize performance and quality.
   * If you're tired of ad-hoc data messes, you want to talk to me.
-  * **Proof:** I developed the **Adobe Analytics Product String Analyzer**—a simple tool that saves analysts hours of headache and ensures clean, actionable data *before* it hits the reporting suite.
+  * **Proof:** I developed the **[Adobe Analytics Product String Analyzer](https://paolobtl.github.io/aa-product-validator/)**, a simple tool that saves analysts hours of headache and ensures clean, actionable data *before* it hits the reporting suite.
   * **My Daily Bread:** **JavaScript.** It's the language of the web, and I wield it with the confidence of someone who knows its every good and terrible secret.
 
 ### My Core Engineering Philosophy
