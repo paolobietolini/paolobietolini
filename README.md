@@ -7,7 +7,7 @@ If it doesn't exist, **I'll build it**.
 
 I specialize in the gray area where **product, data, and engineering** collide.
 I don't just write code; I design systems that translate business chaos into measurable outcomes. 
-The only thing I enjoy more than a complex technical problem is watching my solution put everyone else out of a job (kidding, mostly).
+The only thing I enjoy more than a complex technical problem is watching my solution actually helping solving real-world problems.
 
 ### What I Actually Do (And Why It Matters)
 
