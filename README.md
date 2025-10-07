@@ -1,5 +1,4 @@
 # 👨‍💻 Paolo Bietolini
-## A non-authorized bio
 
 If it's broken, **I'll fix it**.\
 If it's slow, **I'll optimize it**.\
