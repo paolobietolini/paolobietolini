@@ -29,5 +29,7 @@ Self-taught programmer. Previously ran my own business. I value solving root cau
 
 **Contact:** [LinkedIn](https://www.linkedin.com/in/paolobietolini/)  
 **Fun fact:** I make a mean carbonara. Fusilli-shaped DNA confirmed.
+\
+\
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmd6bjV0dzlzOXRyOWJ5bXBiczBkY2lyOHZoYnYwdDV2YXd0ZHl2cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EZr27ZbJwmjE9PGyLN/giphy.gif"></img>
 
