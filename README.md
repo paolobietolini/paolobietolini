@@ -1,40 +1,33 @@
-# 👨‍💻 Paolo Bietolini
+# Paolo Bietolini
 
-If it's broken, **I'll fix it**.\
-If it's slow, **I'll optimize it**.\
-If it doesn't exist, **I'll build it**.
+Digital Analyst & Developer focused on analytics infrastructure and Go-To-Market tooling.
 
-I specialize in the gray area where **product, data, and engineering** collide.
-I don't just write code; I design systems that translate business chaos into measurable outcomes. 
-The only thing I enjoy more than a complex technical problem is watching my solution actually helping solving real-world problems.
+## What I Build (so far)
 
-### What I Actually Do (And Why It Matters)
+**[GTM MCP Server](https://github.com/paolobtl/gtm-mcp)** - MCP server for Google Tag Manager API  
+Python-based server that lets Claude (or any LLM Client) interact with GTM containers programmatically. Create tags, triggers, variables, and publish versions through natural language.
 
-My focus is on tooling and infrastructure that makes the entire Go-To-Market and data-collection lifecycle *sane*.
+**[Adobe Analytics Product String Analyzer](https://paolobtl.github.io/aa-product-validator/)** - Data validation tool  
+Browser-based validator for Adobe Analytics product strings. Catches malformed data before it hits your reporting suite.
 
-  * **GTM & Data Infrastructure:** I build community-focused **Go-To-Market [Google Tag Manager templates](https://tagmanager.google.com/gallery/#/?filter=paolobtl)** and high-grade **data collection tools** that standardize performance and quality.
-    If you're tired of ad-hoc data messes, you want to talk to me.
-  * **Proof:** I developed the **[Adobe Analytics Product String Analyzer](https://paolobtl.github.io/aa-product-validator/)**, a simple tool that saves analysts hours of headache and ensures clean, actionable data *before* it hits the reporting suite.
-  * **My Daily Bread:** **JavaScript.** It's the language of the web, and I wield it with the confidence of someone who knows its every good and terrible secret.
+**[GTM Community Templates](https://tagmanager.google.com/gallery/#/?filter=paolobtl)** - Public GTM templates  
+Community-focused templates for standardized data collection and tracking implementations.
 
-### My Core Engineering Philosophy
+## Tech Stack
 
-  * **Relentless Optimization:** I'm not satisfied until the architecture is clean, the code is performant, and the documentation is clear.
-    I'm a creative problem solver who believes in solving the *root cause*, not just putting out fires.
-  * **AI vs. Brain:** I believe your brain is still the best language model available. I **refuse** to use AI as a crutch to avoid thinking deeply about a problem.
-    If you see my code, know it was built by a human with genuine insight.
-  * **Whole Picture Architect:** I don't just fix the wire; I study the whole electrical grid.
-    While I'm deeply technical, I refuse to be tunnel-visioned.
-    Every solution I build is designed to be coherent with the overarching business logic; not just technically complete.
-    \
-    \
+**Daily:** JavaScript, Python, Google Tag Manager, Adobe Analytics  
+**Infrastructure:** Google Cloud Platform, OAuth, REST APIs  
+**Currently exploring:** MCP protocol, self-hosted analytics, homelab networking
+
+## Background
+
+Currently Digital Analyst at [ALDI Tech Hub](https://www.aldi-tech-hub.pl/), working on analytics infrastructure across multiple European markets. ensuring data quality, implementing server-side tracking, and centralizing regional reporting.
+
+Self-taught programmer. Previously ran my own business. I value solving root causes over quick fixes, and I like thinking through problems to find solutions.
+
+---
+
+**Contact:** [LinkedIn](https://www.linkedin.com/in/paolobietolini/)  
+**Fun fact:** I make a mean carbonara. Fusilli-shaped DNA confirmed.
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmd6bjV0dzlzOXRyOWJ5bXBiczBkY2lyOHZoYnYwdDV2YXd0ZHl2cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EZr27ZbJwmjE9PGyLN/giphy.gif"></img>
 
-
-
-### Important Details
-| | |
-| :--- | :--- |
-| **Best Way to Contact** | Serious inquiries only, please connect on **[LinkedIn](https://www.linkedin.com/in/paolobietolini/)**. |
-| **Why Hire Me?** | I solve problems you didn't even know you had. |
-| **Fun Fact** | I make the best **Carbonara** and **Lasagna** you will ever have. My DNA is, apparently, fusilli-shaped. |
