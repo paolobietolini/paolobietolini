@@ -26,7 +26,7 @@ Designing and building a **GTM automation platform** in Go for cross-account con
 
 Technical Digital Analyst at ALDI Tech Hub, working on analytics infrastructure across European markets. Previously at Dyson as SME for data collection architecture.
 
-Self-taught. I care more about understanding systems than collecting certifications.
+Self-taught.
 
 ---
 
