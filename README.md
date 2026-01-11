@@ -1,31 +1,33 @@
 # Paolo Bietolini
 
-Digital Analyst & Developer focused on analytics infrastructure and Go-To-Market tooling.
+Building tools that solve real problems in analytics infrastructure.
 
-## What I Build
+## Current Focus
 
-**[GTM MCP Server](https://github.com/paolobtl/gtm-mcp)** - MCP server for Google Tag Manager API  
-Python-based MCP server that lets AI assistants interact with GTM containers programmatically.
+Designing and building a **GTM automation platform** in Go for cross-account container migration, dependency resolution, rate-limited API orchestration. Not public yet.
 
-**[Adobe Analytics Product String Analyzer](https://paolobtl.github.io/aa-product-validator/)** - Data validation tool  
-Browser-based validator for Adobe Analytics product strings. Catches malformed data before it hits your reporting suite.
+## Open Source
 
-**[GTM Community Templates](https://tagmanager.google.com/gallery/#/?filter=paolobtl)** - Public GTM templates  
-Community-focused templates for standardized data collection and tracking implementations.
+**[GTM API for LLMs](https://github.com/paolobietolini/gtm-api-for-llms)** — AI-first documentation of the Google Tag Manager API. Structured for LLMs to parse and use. Includes a Claude Code (and Codex) [skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview).
 
-## Tech Stack
+**[GTM MCP Server](https://github.com/paolobietolini/gtm-mcp)** — Python MCP server for programmatic GTM interaction via AI assistants.
 
-**Daily:** JavaScript, Python, Google Tag Manager, Adobe Analytics  
-**Infrastructure:** Google Cloud Platform, OAuth, REST APIs  
-**Currently exploring:** MCP protocol, self-hosted analytics, homelab networking
+**[Adobe Analytics Product String Analyzer](https://paolobietolini.github.io/aa-product-validator/)** — Browser-based validator for AA product strings.
+
+**[GTM Community Templates](https://tagmanager.google.com/gallery/#/?filter=paolobtl)** — Public templates for standardized tracking implementations.
+
+## Tech
+
+**Building with:** Go, Python, JavaScript  
+**Infrastructure:** GCP, Docker, REST APIs, OAuth  
+**Domain:** Analytics systems, data collection architecture, integration patterns
 
 ## Background
 
-Currently Digital Analyst at [ALDI Tech Hub](https://www.aldi-tech-hub.pl/), working across multiple European markets on analytics infrastructure. CMS migration, server-side tracking implementation, and centralized reporting.
+Technical Digital Analyst at ALDI Tech Hub, working on analytics infrastructure across European markets. Previously at Dyson as SME for data collection architecture.
 
-Self-taught programmer. Previously ran my own business. I value solving root causes over quick fixes, and I like thinking through problems to find solutions.
+Self-taught. I care more about understanding systems than collecting certifications.
 
 ---
 
-**Contact:** [LinkedIn](https://www.linkedin.com/in/paolobietolini/)  
-**Fun fact:** I make a mean carbonara. Fusilli-shaped DNA confirmed.
+[LinkedIn](https://www.linkedin.com/in/paolobietolini/)
