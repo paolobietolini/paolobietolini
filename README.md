@@ -10,7 +10,7 @@ Designing and building a **GTM automation platform** in Go for cross-account con
 
 **[GTM API for LLMs](https://github.com/paolobietolini/gtm-api-for-llms)** — AI-first documentation of the Google Tag Manager API. Structured for LLMs to parse and use. Includes a Claude Code (and Codex) [skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview).
 
-**[GTM MCP Server](https://github.com/paolobietolini/gtm-mcp)** — Python MCP server for programmatic GTM interaction via AI assistants.
+**[GTM MCP Server](https://github.com/paolobietolini/gtm-mcp-serve)** — MCP server in Go for programmatic GTM interaction via AI assistants.
 
 **[Adobe Analytics Product String Analyzer](https://paolobietolini.github.io/aa-product-validator/)** — Browser-based validator for AA product strings.
 
