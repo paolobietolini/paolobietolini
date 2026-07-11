@@ -1,5 +1,3 @@
-# Paolo Bietolini
-
 ## Projects
 * [MCP Server for Google Tag Manager](https://github.com/paolobietolini/gtm-mcp-server)
 * [Adobe Analytics SDR generator](https://github.com/paolobietolini/aa-sdr-generator)
