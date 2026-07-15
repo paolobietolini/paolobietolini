@@ -1,7 +1,7 @@
 ## Projects
-* [MCP Server for Google Tag Manager](https://github.com/paolobietolini/gtm-mcp-server)
-* [Adobe Analytics SDR generator](https://github.com/paolobietolini/aa-sdr-generator)
-* [piuma](https://github.com/paolobietolini/piuma)
+* [MCP Server for Google Tag Manager](https://github.com/sprawz/gtm-mcp-server)
+* [Adobe Analytics SDR generator](https://github.com/sprawz/aa-sdr-generator)
+* [piuma](https://github.com/sprawz/piuma)
   
 ## Current Focus
 * Learning C using and Computer Science
