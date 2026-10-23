@@ -1,0 +1,15 @@
+{
+  "projectId": "3f7a0601-20ad-4616-bce4-756636764b49",
+  "shape": "package",
+  "pkg": "paolobietoliniastro",
+  "globalName": "PaoloBietolini",
+  "cssEntry": "brand/tokens.css",
+  "extraFonts": [
+    ".design-sync/fonts.css"
+  ],
+  "guidelinesGlob": [
+    "brand/BRAND.md"
+  ],
+  "entry": ".design-sync/entry.js",
+  "readmeHeader": ".design-sync/conventions.md"
+}
