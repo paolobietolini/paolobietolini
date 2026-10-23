@@ -1,0 +1,13 @@
+---
+import type { Site } from '../lib/site';
+
+interface Props {
+  site: Site;
+}
+
+const { site } = Astro.props;
+---
+
+<footer class="site-footer container meta">
+  {site.socials.map((s) => <a href={s.href}>{s.label}</a>)}
+</footer>

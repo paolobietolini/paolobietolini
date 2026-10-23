@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "TZ=America/Los_Angeles node --test 'tests/unit/*.test.ts'",
+    "test:dist": "astro build && node --test 'tests/dist/*.test.ts'"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

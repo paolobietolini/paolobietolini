@@ -1,0 +1,53 @@
+/* Layout only. Colours, type and dark mode come from brand/tokens.css. */
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand .pb-mark { font-size: 20px; }
+.brand-name { font-weight: 700; font-size: 15px; letter-spacing: -0.02em; }
+.site-header nav { display: flex; gap: 20px; }
+.site-header nav a {
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-header nav a.accent { color: var(--accent); }
+.site-header nav a:hover { color: var(--ink); }
+
+/* Home */
+.eyebrow { color: var(--accent); margin: 48px 0 0; }
+.intro p { color: var(--text-2); max-width: var(--measure); }
+
+/* Footer */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 80px;
+  padding-top: 24px;
+  padding-bottom: 48px;
+  border-top: 1px solid var(--rule);
+}
+.site-footer a { color: var(--muted); text-decoration: none; }
+.site-footer a:hover { color: var(--ink); }

@@ -1,2 +1,13 @@
 site:
   name: Paolo Bietolini
+  tagline: digital analytics · martech · measurement
+  description: Freelance digital analytics and MarTech engineer.
+  intro: |
+    I'm Paolo. I build tracking, tag management and measurement setups,
+    and write about how they work underneath.
+  nav:
+    - { label: Posts, href: /posts/ }
+    - { label: Contact, href: "mailto:hello@paolobietolini.com", accent: true }
+  socials:
+    - { label: GitHub, href: https://github.com/… }
+    - { label: LinkedIn, href: https://www.linkedin.com/in/… }
