@@ -2,6 +2,7 @@
 
 Identity name: **Braces**, v1 (October 2026).
 Personality: technical, minimal, trustworthy.
+Positioning line: **Digital analytics · MarTech · Measurement** (mono eyebrow form: `digital analytics · martech · measurement`).
 Audience: freelance clients and fellow engineers and analysts.
 
 This is the reference for anyone, human or AI, building on paolobietolini.com. Tokens live in `tokens.css`. Logo files are in `logo/`. Web assets are in `public/`.
@@ -94,6 +95,16 @@ Prose max width: 68ch. Dates use ISO format in mono: `2026-08-03 · C · 8 min`.
 
 Plain, specific, first person. Explain how things work underneath rather than which button to click. Bilingual: English and Italian, one language per post.
 
+## Integrating in this repo (Astro)
+
+The repo is the Astro "basics" starter (Astro 7, `@astrojs/sitemap`).
+
+1. Copy `brand/public/*` into `public/`, overwriting the starter `favicon.ico` and `favicon.svg`.
+2. Import the tokens once in `src/layouts/Layout.astro` frontmatter: `import '../../brand/tokens.css';`
+3. Add the `<head>` tags below to `Layout.astro`.
+4. Delete the starter `src/assets/astro.svg`, `src/assets/background.svg` and `src/components/Welcome.astro`.
+5. For per-post social images, see "Social preview" below.
+
 ## Web assets (`public/`)
 
 Copy the contents of `brand/public/` into the Astro `public/` folder, then add this to the base layout `<head>`:
@@ -125,6 +136,7 @@ Copy the contents of `brand/public/` into the Astro `public/` folder, then add t
 - 1200×630, background `#14121F`.
 - Top-left at (80, 80): symbol 40px in `#A493FF`, then "Paolo Bietolini" sans 700 30px in `#EEEDF4`.
 - Title: sans 700, 76px, -3% tracking, 86px line height, `#EEEDF4`, left 80px, max 3 lines, max width 1040px.
+- Default title: "Digital analytics, / MarTech, / and measurement."
 - Bottom-left at baseline 560: `paolobietolini.com` or the post date in mono 500 24px, `#9C98B0`.
 
 ## Avatar
