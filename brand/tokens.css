@@ -1,0 +1,96 @@
+/* Paolo Bietolini — brand tokens (Braces, v1)
+   Fonts are self-hosted from /fonts (copy brand/public/fonts into the site's public/). */
+
+@font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/schibsted-grotesk-latin-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/schibsted-grotesk-latin-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/schibsted-grotesk-latin-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/geist-mono-latin-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/geist-mono-latin-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/fonts/geist-mono-latin-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+
+:root {
+  color-scheme: light dark;
+
+  /* Colour — light */
+  --ink: #14121F;
+  --text-2: #3E3A50;      /* secondary body text */
+  --muted: #5E5A70;       /* meta, captions */
+  --paper: #FAFAFC;
+  --surface: #EFEEF5;
+  --rule: #E4E2EC;
+  --accent: #5B3FD6;
+  --on-accent: #FFFFFF;
+
+  /* Type */
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --fs-display: 3.5rem;   /* 56 */
+  --fs-h1: 2.5rem;        /* 40 */
+  --fs-h2: 1.75rem;       /* 28 */
+  --fs-h3: 1.25rem;       /* 20 */
+  --fs-body: 1.125rem;    /* 18 */
+  --fs-code: 0.9375rem;   /* 15 */
+  --fs-meta: 0.8125rem;   /* 13 */
+
+  --lh-display: 1.05;
+  --lh-h1: 1.1;
+  --lh-h2: 1.2;
+  --lh-h3: 1.3;
+  --lh-body: 1.6;
+
+  --tracking-display: -0.03em;
+  --tracking-h1: -0.025em;
+  --tracking-h2: -0.02em;
+
+  /* Shape & space */
+  --radius-sm: 6px;       /* buttons, inputs */
+  --radius-md: 8px;       /* cards */
+  --radius-lg: 10px;
+  --measure: 68ch;        /* max line length for prose */
+
+  /* Logo symbol: optical gap between braces and initials */
+  --brace-gap: 0.28em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #EEEDF4;
+    --text-2: #C9C6D6;
+    --muted: #9C98B0;
+    --paper: #14121F;
+    --surface: #1E1B2C;
+    --rule: #2D2940;
+    --accent: #A493FF;
+    --on-accent: #14121F;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #EEEDF4;
+  --text-2: #C9C6D6;
+  --muted: #9C98B0;
+  --paper: #14121F;
+  --surface: #1E1B2C;
+  --rule: #2D2940;
+  --accent: #A493FF;
+  --on-accent: #14121F;
+}
+
+/* Base */
+html { background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 100%; -webkit-font-smoothing: antialiased; }
+body { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); }
+h1, h2, h3 { font-weight: 700; color: var(--ink); text-wrap: balance; }
+h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-spacing: var(--tracking-h1); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: var(--tracking-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 500; }
+p { text-wrap: pretty; }
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { color: var(--ink); }
+code, kbd, pre, samp { font-family: var(--font-mono); font-size: var(--fs-code); }
+hr { border: 0; border-top: 1px solid var(--rule); }
+::selection { background: var(--accent); color: var(--on-accent); }
+
+/* Text logo: <a class="pb-mark" href="/"><span>{</span><span>PB</span><span>}</span></a> */
+.pb-mark { display: inline-flex; align-items: center; font-family: var(--font-mono); font-weight: 500; color: var(--accent); text-decoration: none; }
+.pb-mark > span:nth-child(2) { margin: 0 var(--brace-gap); letter-spacing: -0.02em; }
+.meta { font-family: var(--font-mono); font-size: var(--fs-meta); font-weight: 500; color: var(--muted); }
