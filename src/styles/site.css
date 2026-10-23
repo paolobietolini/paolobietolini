@@ -39,6 +39,32 @@
 .eyebrow { color: var(--accent); margin: 48px 0 0; }
 .intro p { color: var(--text-2); max-width: var(--measure); }
 
+/* Post list */
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-item { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.post-item:first-child { border-top: 1px solid var(--rule); }
+.post-item .meta { margin: 0 0 6px; }
+.post-title {
+  font-weight: 700;
+  font-size: clamp(19px, 1rem + 0.5vw, 22px);
+  line-height: var(--lh-h3);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.post-title:hover { color: var(--accent); }
+
+/* Post */
+.prose { max-width: var(--measure); overflow-wrap: anywhere; color: var(--text-2); }
+.prose > .meta { margin: 48px 0 0; }
+.prose pre {
+  overflow-x: auto;
+  overflow-wrap: normal;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
 /* Footer */
 .site-footer {
   display: flex;

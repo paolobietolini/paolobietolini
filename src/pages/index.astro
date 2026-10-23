@@ -1,9 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import PostItem from '../components/PostItem.astro';
 import { getSite } from '../lib/site';
+import { getPosts } from '../lib/posts';
+import { latest } from '../lib/post-utils';
 
 const site = await getSite();
 const paragraphs = site.intro.trim().split(/\n\s*\n/);
+const posts = latest(await getPosts());
 ---
 
 <Base>
@@ -12,4 +16,16 @@ const paragraphs = site.intro.trim().split(/\n\s*\n/);
   <div class="intro">
     {paragraphs.map((p) => <p>{p}</p>)}
   </div>
+
+  <h2>Latest</h2>
+  {
+    posts.length ? (
+      <ul class="post-list">
+        {posts.map((post) => <PostItem post={post} />)}
+      </ul>
+    ) : (
+      <p class="meta">No posts yet.</p>
+    )
+  }
+  <p><a href="/posts/">All posts →</a></p>
 </Base>

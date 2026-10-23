@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostItem from '../../components/PostItem.astro';
+import { getPosts } from '../../lib/posts';
+
+const posts = await getPosts();
+---
+
+<Base title="Posts">
+  <h1>Posts</h1>
+  {
+    posts.length ? (
+      <ul class="post-list">
+        {posts.map((post) => <PostItem post={post} />)}
+      </ul>
+    ) : (
+      <p class="meta">No posts yet.</p>
+    )
+  }
+</Base>

@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { file } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const link = z.object({ label: z.string(), href: z.string() }).strict();
@@ -18,4 +18,15 @@ const config = defineCollection({
     .strict(),
 });
 
-export const collections = { config };
+const posts = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/posts' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    lang: z.enum(['en', 'it']),
+    description: z.string(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { config, posts };
