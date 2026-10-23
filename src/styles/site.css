@@ -5,6 +5,8 @@
   margin: 0 auto;
   padding: 0 16px;
 }
+/* Long identifiers in titles or intro must not widen the page on phones. */
+main { overflow-wrap: anywhere; }
 
 /* Header */
 .site-header {
