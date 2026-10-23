@@ -14,6 +14,7 @@
     "test:dist": "astro build && node --test 'tests/dist/*.test.ts'"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.4.2"
   }

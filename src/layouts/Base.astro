@@ -14,6 +14,7 @@ interface Props {
 const site = await getSite();
 const { title, description = site.description, lang = 'en' } = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -29,6 +30,13 @@ const pageTitle = title ? `${title} · ${site.name}` : site.name;
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#FAFAFC" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14121F" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://paolobietolini.com/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>

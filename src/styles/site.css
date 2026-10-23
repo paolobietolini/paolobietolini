@@ -65,6 +65,14 @@
   padding: 16px;
 }
 
+/* Code: Shiki emits light colours inline and dark ones as --shiki-dark vars.
+   The block background always comes from --surface. */
+.prose pre.astro-code { background-color: var(--surface) !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .astro-code span { color: var(--shiki-dark) !important; }
+}
+:root[data-theme="dark"] .astro-code span { color: var(--shiki-dark) !important; }
+
 /* Footer */
 .site-footer {
   display: flex;
