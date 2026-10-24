@@ -3,8 +3,9 @@ site:
   tagline: digital analytics · martech · measurement
   description: Freelance digital analytics and MarTech engineer.
   intro: |
-    I'm Paolo. I build tracking, tag management and measurement setups,
-    and write about how they work underneath.
+    Freelance digital analyst and MarTech engineer. I write about tracking,
+    data pipelines, and the occasional C program, mostly in English,
+    sometimes in Italian.
   nav:
     - { label: Posts, href: /posts/ }
     - { label: Contact, href: "mailto:hello@paolobietolini.com", accent: true }
