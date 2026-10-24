@@ -2,7 +2,7 @@
 title: You don't need a landlord to censor You
 date: 2026-08-29
 lang: en
-description: ""
+description: "We traded spaces we held for rented ones, and learned to censor ourselves for the landlord's algorithm. Why I keep a site of my own, and why owning the archive of your work matters more than owning the whole stack."
 ---
 If you've ever read this blog, you know I work in analytics and data collection in MarTech. And if you've ever read this blog, I will never know it. Despite what I do for a living, this site has no way of tracking you. I even installed the Google Fonts on my own server so your IP address never reaches Google, and I keep no logs of who visits which page.
 
@@ -14,7 +14,7 @@ This is centralization. The same thing already happened with search. Everything 
 
 I want to be clear that I'm not the conspiracy theorist accusing power of taking something from me. Nobody stole this freedom. We traded it. Zero friction, free distribution, an instant audience. Going back costs effort, and that effort is exactly why almost nobody goes back.
 
-I don't know whether my post on [remigration](/posts/remigrate-them-all/) would have been shadowbanned on Reddit or Facebook, and I have no interest in finding out. Holding a space of my own is precisely so I can say what I want without running it through a filter first. I can say that [Putin](https://www.icc-cpi.int/defendant/vladimir-vladimirovich-putin) and [Netanyahu](https://www.icc-cpi.int/defendant/netanyahu) are war criminals for slaughtering children and innocent civilians, and I don't have to check that against anyone's [list of banned words](https://pen.org/banned-words-list/?ref=paolobietolini.com). ([This one](https://www.lssu.edu/resources/about-lssu/traditions/banishedwords/?ref=paolobietolini.com) from LSSU, on the other hand, is just funny.)
+Holding a space of my own is precisely so I can say what I want without running it through a filter first. I can say that [Putin](https://www.icc-cpi.int/defendant/vladimir-vladimirovich-putin) and [Netanyahu](https://www.icc-cpi.int/defendant/netanyahu) are war criminals for slaughtering children and innocent civilians, and I don't have to check that against anyone's [list of banned words](https://pen.org/banned-words-list/?ref=paolobietolini.com). ([This one](https://www.lssu.edu/resources/about-lssu/traditions/banishedwords/?ref=paolobietolini.com) from LSSU, on the other hand, is just funny.)
 
 What I find strange is watching people rail against governments in the name of free expression and then quietly censor themselves anyway. For most of the last decade, the thing actually shaping what you say online hasn't been a statute. Nobody is prosecuted for writing the word dead. We simply moved the power from a state's executive branch to a private company's terms of service, and then we internalized it.
 

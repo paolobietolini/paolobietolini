@@ -242,7 +242,6 @@ Quando implementi SSGTM:
 - VPS: ~5-20 €/mese
 - Richiede competenze tecniche maggiori
 - Controllo totale su costi e dati
-- Vedi il mio [articolo su implementazione Docker self-hosted](https://paolobietolini.com/blog/tag-manager-server-on-premise/)
 
 ### Complessità Tecnica
 
@@ -379,12 +378,9 @@ Prima di implementarlo, chiediti:
 
 Se le risposte sono sì, SSGTM può trasformare il modo in cui raccogli e gestisci i dati. Altrimenti, il tradizionale client-side tracking potrebbe essere ancora la scelta giusta.
 
-Per implementazioni pratiche e guide dettagliate, consulta i miei altri articoli sul [self-hosting GTM](https://paolobietolini.com/blog/tag-manager-server-on-premise/) e sulla [strategia di tracking](https://paolobietolini.com/blog/strategia-di-tracking/).
-
 ---
 
 ## Risorse Utili
 
 - [Documentazione ufficiale GTM Server-Side](https://developers.google.com/tag-platform/tag-manager/server-side)
 - [Server-side tagging overview - Google](https://support.google.com/tagmanager/answer/9442095)
-- [Il mio articolo su implementazione Docker self-hosted](https://paolobietolini.com/blog/tag-manager-server-on-premise/)
