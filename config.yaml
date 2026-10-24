@@ -9,5 +9,5 @@ site:
     - { label: Posts, href: /posts/ }
     - { label: Contact, href: "mailto:hello@paolobietolini.com", accent: true }
   socials:
-    - { label: GitHub, href: https://github.com/… }
-    - { label: LinkedIn, href: https://www.linkedin.com/in/… }
+    - { label: GitHub, href: https://github.com/paolobietolini }
+    - { label: LinkedIn, href: https://www.linkedin.com/in/paolobietolini }
