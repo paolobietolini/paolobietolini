@@ -66,6 +66,14 @@ main { overflow-wrap: anywhere; }
   border-radius: var(--radius-md);
   padding: 16px;
 }
+.prose blockquote {
+  margin: 1.5em 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--rule);
+  color: var(--muted);
+}
+.prose blockquote > :first-child { margin-top: 0; }
+.prose blockquote > :last-child { margin-bottom: 0; }
 
 /* Code: Shiki emits light colours inline and dark ones as --shiki-dark vars.
    The block background always comes from --surface. */
