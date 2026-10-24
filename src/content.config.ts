@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { isPlainDay } from './lib/post-utils';
 
 const link = z.object({ label: z.string(), href: z.string() }).strict();
 
@@ -22,7 +23,7 @@ const posts = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(),
+    date: z.coerce.date().refine(isPlainDay, 'date must be a plain day (YYYY-MM-DD), without a time'),
     lang: z.enum(['en', 'it']),
     description: z.string(),
     draft: z.boolean().default(false),

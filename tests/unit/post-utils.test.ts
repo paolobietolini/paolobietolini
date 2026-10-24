@@ -1,6 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { formatDate, readingTime, published, latest, metaLine, type PostLike } from '../../src/lib/post-utils.ts';
+import { formatDate, isPlainDay, readingTime, published, latest, metaLine, type PostLike } from '../../src/lib/post-utils.ts';
+
+test('isPlainDay accepts a bare date and rejects one with a time', () => {
+  assert.equal(isPlainDay(new Date('2026-08-03')), true);
+  assert.equal(isPlainDay(new Date('2026-08-03T01:00:00+02:00')), false);
+});
 
 const post = (id: string, date: string, extra: Partial<PostLike['data']> = {}, body = 'word'): PostLike => ({
   id,

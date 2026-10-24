@@ -11,6 +11,11 @@ export function formatDate(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
+// Post dates are days, not instants: a timestamp would render in UTC as a different day.
+export function isPlainDay(d: Date): boolean {
+  return d.getTime() % 86_400_000 === 0;
+}
+
 export function readingTime(text: string): number {
   const words = text.trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.ceil(words / 200));
