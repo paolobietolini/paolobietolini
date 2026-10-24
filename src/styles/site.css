@@ -25,7 +25,7 @@ main { overflow-wrap: anywhere; }
   color: var(--ink);
   text-decoration: none;
 }
-.brand .pb-mark { font-size: 20px; }
+.brand .pb-mark { font-size: var(--fs-h3); }
 .brand-name { font-weight: 700; font-size: 15px; letter-spacing: -0.02em; }
 .site-header nav { display: flex; gap: 20px; }
 .site-header nav a {
