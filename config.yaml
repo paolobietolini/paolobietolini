@@ -4,7 +4,7 @@ site:
   description: Freelance digital analytics and MarTech engineer.
   intro: |
     Freelance digital analyst and MarTech engineer. I write about tracking,
-    data pipelines, and the occasional C program, mostly in English,
+    data pipelines, and occasionally programming, mostly in English,
     sometimes in Italian.
   nav:
     - { label: Posts, href: /posts/ }
