@@ -4,13 +4,14 @@ import PostItem from '../components/PostItem.astro';
 import { getSite } from '../lib/site';
 import { getPosts } from '../lib/posts';
 import { latest } from '../lib/post-utils';
+import { homeJsonLd } from '../lib/structured-data';
 
 const site = await getSite();
 const paragraphs = site.intro.trim().split(/\n\s*\n/);
 const posts = latest(await getPosts());
 ---
 
-<Base>
+<Base jsonLd={homeJsonLd(site, Astro.site!.origin)}>
   <p class="eyebrow meta">{site.tagline}</p>
   <h1>{site.name}</h1>
   <div class="intro">

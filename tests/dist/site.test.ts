@@ -23,9 +23,15 @@ test('home has brand head tags', () => {
   assert.ok(html.includes('<html lang="en"'));
 });
 
-test('no client script on any page', () => {
-  for (const f of files('.html')) assert.ok(!read(f).includes('<script'), f);
+test('no client script on any page (JSON-LD data blocks only)', () => {
+  for (const f of files('.html')) {
+    const scripts = read(f).match(/<script[^>]*>/g) ?? [];
+    for (const tag of scripts) assert.ok(tag.includes('type="application/ld+json"'), `${f}: ${tag}`);
+  }
 });
+
+const jsonLd = (html: string) =>
+  [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
 
 test('brand fonts are shipped', () => {
   assert.ok(existsSync(join(DIST, 'fonts/schibsted-grotesk-latin-700.woff2')));
@@ -112,5 +118,34 @@ test('no embedded third-party frames', () => {
 test('each post page has exactly one h1', () => {
   for (const d of postPages()) {
     assert.equal(read(`posts/${d}/index.html`).match(/<h1[\s>]/g)?.length, 1, d);
+  }
+});
+
+test('home has WebSite and Person JSON-LD', () => {
+  const [data] = jsonLd(read('index.html'));
+  const types = data['@graph'].map((n: { '@type': string }) => n['@type']);
+  assert.deepEqual(types.sort(), ['Person', 'WebSite']);
+});
+
+test('each post page has article JSON-LD and its own OG image', () => {
+  const byTitle = new Map(PUBLISHED.map((p) => [p.title, p]));
+  for (const d of postPages()) {
+    const html = read(`posts/${d}/index.html`);
+    const post = byTitle.get(builtTitle(html))!;
+    const ld = jsonLd(html);
+    assert.equal(ld.length, 1, d);
+    const [a] = ld;
+    assert.deepEqual(a['@type'], ['BlogPosting', 'TechArticle'], d);
+    assert.equal(a.headline, post.title, d);
+    assert.equal(a.inLanguage, post.lang, d);
+    // Google requires full ISO 8601 datetimes with a timezone.
+    const iso = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})$/;
+    assert.match(a.datePublished, iso, d);
+    if (a.dateModified) assert.match(a.dateModified, iso, d);
+    assert.equal(a.image, `https://paolobietolini.com/og/${d}.png`, d);
+    assert.ok(html.includes(`property="og:image" content="${a.image}"`), d);
+    const png = readFileSync(join(DIST, 'og', `${d}.png`));
+    assert.equal(png.readUInt32BE(16), 1200, d);
+    assert.equal(png.readUInt32BE(20), 630, d);
   }
 });

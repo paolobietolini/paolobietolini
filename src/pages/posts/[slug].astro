@@ -3,6 +3,9 @@ import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { getPosts } from '../../lib/posts';
 import { metaLine } from '../../lib/post-utils';
+import { getSite } from '../../lib/site';
+import { gitLastModified } from '../../lib/last-modified';
+import { isoDateTime, postJsonLd } from '../../lib/structured-data';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -15,9 +18,16 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const site = await getSite();
+const origin = Astro.site!.origin;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const image = new URL(`/og/${post.id}.png`, Astro.site).href;
+const modified = post.data.updated ? isoDateTime(post.data.updated) : post.filePath && gitLastModified(post.filePath);
+const jsonLd = postJsonLd(post, { site, origin, url, image, modified });
 ---
 
-<Base title={post.data.title} description={post.data.description} lang={post.data.lang}>
+<Base title={post.data.title} description={post.data.description} lang={post.data.lang} image={image} jsonLd={jsonLd}>
   <article class="prose">
     <p class="meta">{metaLine(post)}</p>
     <h1>{post.data.title}</h1>

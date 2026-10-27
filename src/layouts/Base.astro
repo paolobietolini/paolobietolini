@@ -4,15 +4,24 @@ import '../styles/site.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getSite } from '../lib/site';
+import { serializeJsonLd } from '../lib/structured-data';
 
 interface Props {
   title?: string;
   description?: string;
   lang?: 'en' | 'it';
+  image?: string;
+  jsonLd?: unknown;
 }
 
 const site = await getSite();
-const { title, description = site.description, lang = 'en' } = Astro.props;
+const {
+  title,
+  description = site.description,
+  lang = 'en',
+  image = new URL('/og-default.png', Astro.site).href,
+  jsonLd,
+} = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -35,9 +44,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content="https://paolobietolini.com/og-default.png" />
+    <meta property="og:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="generator" content={Astro.generator} />
+    {jsonLd && <script type="application/ld+json" is:inline set:html={serializeJsonLd(jsonLd)} />}
   </head>
   <body>
     <Header site={site} />

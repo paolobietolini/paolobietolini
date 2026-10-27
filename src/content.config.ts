@@ -25,6 +25,8 @@ const posts = defineCollection({
     title: z.string(),
     date: z.coerce.date().refine(isPlainDay, 'date must be a plain day (YYYY-MM-DD), without a time'),
     lang: z.enum(['en', 'it']),
+    // Optional: overrides the last-modified day taken from git.
+    updated: z.coerce.date().refine(isPlainDay, 'updated must be a plain day (YYYY-MM-DD), without a time').optional(),
     description: z.string(),
     draft: z.boolean().default(false),
   }),

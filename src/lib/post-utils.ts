@@ -3,7 +3,7 @@
 export type PostLike = {
   id: string;
   body?: string;
-  data: { title: string; date: Date; lang: 'en' | 'it'; description: string; draft: boolean };
+  data: { title: string; date: Date; updated?: Date; lang: 'en' | 'it'; description: string; draft: boolean };
 };
 
 // Front-matter dates parse as UTC midnight; formatting in local time can show the previous day.
