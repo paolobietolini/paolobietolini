@@ -1,15 +1,15 @@
 ---
-import '../../brand/tokens.css';
-import '../styles/site.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { getSite } from '../lib/site';
-import { serializeJsonLd } from '../lib/structured-data';
+import "../../brand/tokens.css";
+import "../styles/site.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getSite } from "../lib/site";
+import { serializeJsonLd } from "../lib/structured-data";
 
 interface Props {
   title?: string;
   description?: string;
-  lang?: 'en' | 'it';
+  lang?: "en" | "it";
   image?: string;
   jsonLd?: unknown;
 }
@@ -18,8 +18,8 @@ const site = await getSite();
 const {
   title,
   description = site.description,
-  lang = 'en',
-  image = new URL('/og-default.png', Astro.site).href,
+  lang = "en",
+  image = new URL("/og-default.png", Astro.site).href,
   jsonLd,
 } = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
@@ -37,19 +37,67 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#FAFAFC" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#14121F" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#FAFAFC"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#14121F"
+      media="(prefers-color-scheme: dark)"
+    />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={site.name}
+      href="/rss.xml"
+    />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="generator" content={Astro.generator} />
-    {jsonLd && <script type="application/ld+json" is:inline set:html={serializeJsonLd(jsonLd)} />}
+    {
+      jsonLd && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={serializeJsonLd(jsonLd)}
+        />
+      )
+    }
   </head>
   <body>
+    <script>
+      import { pushEvent } from "../lib/analytics";
+      import { onLCP, onFCP, onCLS, onINP } from "web-vitals";
+
+      type Metric = {
+        name: string;
+        value: number;
+        rating: string;
+        id: string;
+      };
+      function send(metric: Metric) {
+        pushEvent({
+          event: "web_vitals",
+          eventInfo:{
+            metric_name: metric.name,
+            metric_value: metric.value,
+            metric_rating: metric.rating,
+            metric_id: metric.id,
+          },
+        });
+      }
+
+      onLCP(send);
+      onFCP(send);
+      onCLS(send);
+      onINP(send);
+    </script>
     <Header site={site} />
     <main class="container">
       <slot />
