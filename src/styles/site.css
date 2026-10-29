@@ -47,7 +47,7 @@ main { overflow-wrap: anywhere; }
 .post-item:first-child { border-top: 1px solid var(--rule); }
 .post-item .meta { margin: 0 0 6px; }
 .post-title {
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(19px, 1rem + 0.5vw, 22px);
   line-height: var(--lh-h3);
   letter-spacing: -0.01em;

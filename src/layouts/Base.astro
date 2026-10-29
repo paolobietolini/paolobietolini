@@ -71,33 +71,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     }
   </head>
   <body>
-    <script>
-      import { pushEvent } from "../lib/analytics";
-      import { onLCP, onFCP, onCLS, onINP } from "web-vitals";
-
-      type Metric = {
-        name: string;
-        value: number;
-        rating: string;
-        id: string;
-      };
-      function send(metric: Metric) {
-        pushEvent({
-          event: "web_vitals",
-          eventInfo:{
-            metric_name: metric.name,
-            metric_value: metric.value,
-            metric_rating: metric.rating,
-            metric_id: metric.id,
-          },
-        });
-      }
-
-      onLCP(send);
-      onFCP(send);
-      onCLS(send);
-      onINP(send);
-    </script>
     <Header site={site} />
     <main class="container">
       <slot />

@@ -25,10 +25,4 @@ const { site } = Astro.props;
       ))
     }
   </nav>
-  <script>
-    import { pushEvent, page } from "../lib/analytics";
-    document.addEventListener("DOMContentLoaded", (e) => {
-      pushEvent({ event: "page_view", page });
-    });
-  </script>
 </header>
