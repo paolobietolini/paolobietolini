@@ -24,15 +24,14 @@ test('home has brand head tags', () => {
   assert.ok(html.includes('<html lang="en"'));
 });
 
-test('client scripts are limited to JSON-LD, the theme script and the dataLayer', () => {
+test('client scripts are limited to JSON-LD and the theme script', () => {
   for (const f of files('.html')) {
     const scripts = read(f).match(/<script[^>]*>/g) ?? [];
     for (const tag of scripts) {
-      const ok = tag.includes('type="application/ld+json"') || tag.includes('data-theme-script') || tag === '<script type="module">';
+      const ok = tag.includes('type="application/ld+json"') || tag.includes('data-theme-script');
       assert.ok(ok, `${f}: ${tag}`);
     }
     assert.ok(scripts.filter((t) => t.includes('data-theme-script')).length <= 1, f);
-    assert.ok(scripts.filter((t) => t === '<script type="module">').length <= 1, f);
   }
 });
 

@@ -1,7 +1,7 @@
 site:
   name: Paolo Bietolini
   tagline: digital analytics · martech · measurement
-  description: Freelance digital analytics and MarTech engineer.
+  description: Enterprise digital analytics and MarTech engineer.
   intro: |
     Hi, I'm Paolo. MarTech Engineer and Tracking Specialist.
     I work with data in marketing since 2018 and I like technology, 
@@ -12,6 +12,7 @@ site:
     The blog is in English, sometimes in Italian.
   nav:
     - { label: Posts, href: /posts/ }
+    - { label: About, href: /#about }
     - { label: Tags, href: /tags/ }
     - { label: Contact, href: "mailto:hello@paolobietolini.com", accent: true }
   socials:
@@ -22,7 +23,7 @@ site:
     - { label: Focus, value: GA4 · server-side GTM · consent mode }
     - { label: Also, value: data layer design · BigQuery · tracking audits }
     - { label: Writing, value: English and Italian }
-    - { label: Based in, value: "TODO: city" }
+    - { label: Based in, value: "Kraków, Poland" }
   about: |
     I design and fix measurement setups: data layers, GTM web and server-side
     containers, GA4 and consent. I care about how the data flows underneath,
