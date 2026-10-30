@@ -280,3 +280,8 @@ test('forced theme also sets color-scheme, so scrollbars and controls match', ()
   assert.ok(css.includes(':root[data-theme=dark]{color-scheme:dark}'), 'dark');
   assert.ok(css.includes(':root[data-theme=light]{color-scheme:light}'), 'light');
 });
+
+test('images inside posts never exceed the text column', () => {
+  const css = files('.css').map(read).join('\n').replace(/\s+/g, '');
+  assert.match(css, /\.proseimg\{[^}]*max-width:100%/);
+});
