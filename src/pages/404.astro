@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Static site: the host sends the real 404 status; this page only renders the body.
+const headers = [
+  ['content-type', 'text/html; charset=utf-8'],
+  ['x-served-by', '{ PB }'],
+  ['x-tags-fired', '0'],
+  ['cache-control', 'no-store'],
+];
+---
+
+<Base title="Not found" description="This page does not exist.">
+  <section class="not-found">
+    <p class="eyebrow meta">error · 404</p>
+    <h1>Nothing lives here.</h1>
+    <p class="not-found-lede">The page moved, or the URL has a typo. Here is what the server said:</p>
+
+    <pre class="terminal" aria-label="HTTP response: 404 Not Found"><code><span class="terminal-prompt">$</span> curl -i https://paolobietolini.com/???
+
+<strong>HTTP/2 404 Not Found</strong>
+{headers.map(([name, value]) => <><span class="terminal-key">{name}:</span> {value}{'\n'}</>)}
+<span class="terminal-muted">(empty body)</span><span class="terminal-cursor" aria-hidden="true"></span></code></pre>
+
+    <nav class="not-found-links" aria-label="Ways back">
+      <a class="btn-primary" href="/posts/">Latest posts <span aria-hidden="true">→</span></a>
+      <a href="/tags/">Browse tags</a>
+      <a href="/">Home</a>
+    </nav>
+  </section>
+</Base>

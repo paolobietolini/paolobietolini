@@ -309,3 +309,13 @@ test('theme toggle icons are 24px (spec)', () => {
   assert.equal(svgs.length, 2);
   for (const s of svgs) assert.ok(s.includes('width="24"') && s.includes('height="24"'), s);
 });
+
+test('404 page is a curl -i response with ways back', () => {
+  const html = read('404.html');
+  assert.equal(html.match(/<h1[\s>]/g)?.length, 1);
+  assert.ok(html.includes('curl -i'));
+  assert.match(html, /HTTP\/2 404 Not Found/);
+  for (const href of ['/posts/', '/tags/', '/']) assert.ok(html.includes(`href="${href}"`), href);
+  assert.equal(html.match(/class="btn-primary/g)?.length, 1);
+  assert.ok(!read('sitemap-0.xml').includes('404'));
+});
