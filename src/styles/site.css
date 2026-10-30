@@ -273,7 +273,8 @@ a.chip:hover { color: var(--ink); border-color: var(--muted); }
 
 /* Post */
 .prose { max-width: var(--measure); overflow-wrap: anywhere; color: var(--text-2); }
-.prose img { max-width: 100%; height: auto; }
+.prose img,
+.prose video { max-width: 100%; height: auto; }
 .prose pre {
   overflow-x: auto;
   overflow-wrap: normal;

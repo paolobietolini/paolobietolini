@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { tagSlug } from '../../src/lib/post-utils.ts';
@@ -297,9 +297,9 @@ test('forced theme also sets color-scheme, so scrollbars and controls match', ()
   assert.ok(css.includes(':root[data-theme=light]{color-scheme:light}'), 'light');
 });
 
-test('images inside posts never exceed the text column', () => {
+test('images and videos inside posts never exceed the text column', () => {
   const css = files('.css').map(read).join('\n').replace(/\s+/g, '');
-  assert.match(css, /\.proseimg\{[^}]*max-width:100%/);
+  assert.match(css, /\.prose(img,\.prosevideo|:is\(img,video\))\{[^}]*max-width:100%/);
 });
 
 const builtCss = () => files('.css').map(read).join('\n').replace(/\s+/g, '');
@@ -337,5 +337,21 @@ test('images are served from the site itself', () => {
     for (const [, src] of read(f).matchAll(/<img[^>]*\ssrc="([^"]+)"/g)) {
       assert.ok(!/^(https?:)?\/\//.test(src), `${f}: external image ${src}`);
     }
+  }
+});
+
+test('video sources are served from the site itself', () => {
+  for (const f of files('.html')) {
+    for (const [, src] of read(f).matchAll(/<(?:video|source)[^>]*\ssrc="([^"]+)"/g)) {
+      assert.ok(!/^(https?:)?\/\//.test(src), `${f}: external video ${src}`);
+    }
+  }
+});
+
+test('no image or video file over 2 MB', () => {
+  const media = readdirSync(join(DIST, 'images'), { recursive: true, encoding: 'utf8' }).filter((f) => /\.(gif|png|jpe?g|webp|avif|svg|mp4|webm)$/i.test(f));
+  for (const f of media) {
+    const { size } = statSync(join(DIST, 'images', f));
+    assert.ok(size <= 2 * 1024 * 1024, `images/${f}: ${(size / 1048576).toFixed(1)} MB`);
   }
 });
