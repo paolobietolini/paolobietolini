@@ -6,9 +6,19 @@ interface Props {
 }
 
 const { site } = Astro.props;
+const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer container meta">
-  {site.socials.map((s) => <a href={s.href}>{s.label}</a>)}
-  <a href="/rss.xml">RSS</a>
+<footer class="site-footer container-wide">
+  <div class="site-footer-row">
+    <p class="site-footer-brand">
+      <span class="pb-mark" aria-hidden="true"><span>{'{'}</span><span>PB</span><span>{'}'}</span></span>
+      <span>{site.description}</span>
+    </p>
+    <nav class="meta" aria-label="Elsewhere">
+      {site.socials.map((s) => <a href={s.href}>{s.label}</a>)}
+      <a href="/rss.xml">RSS</a>
+    </nav>
+  </div>
+  <p class="meta">© {year} {site.name} · Built with Astro</p>
 </footer>

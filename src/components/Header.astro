@@ -1,6 +1,6 @@
 ---
-import { json } from "astro:schema";
 import type { Site } from "../lib/site";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   site: Site;
@@ -9,20 +9,25 @@ interface Props {
 const { site } = Astro.props;
 ---
 
-<header class="site-header container">
-  <a class="brand" href="/">
-    <span class="pb-mark" aria-hidden="true"
-      ><span>{"{"}</span><span>PB</span><span>{"}"}</span></span
-    >
-    <span class="brand-name">{site.name}</span>
-  </a>
-  <nav aria-label="Main">
-    {
-      site.nav.map((item) => (
-        <a href={item.href} class:list={{ accent: item.accent }}>
-          {item.label}
-        </a>
-      ))
-    }
-  </nav>
+<header class="site-header">
+  <div class="site-header-inner container-wide">
+    <a class="brand" href="/">
+      <span class="pb-mark" aria-hidden="true"
+        ><span>{"{"}</span><span>PB</span><span>{"}"}</span></span
+      >
+      <span class="brand-name">{site.name}</span>
+    </a>
+    <div class="site-header-end">
+      <nav aria-label="Main">
+        {
+          site.nav.map((item) => (
+            <a href={item.href} class:list={{ accent: item.accent }}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
 </header>

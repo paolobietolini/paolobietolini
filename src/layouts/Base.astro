@@ -12,6 +12,7 @@ interface Props {
   lang?: "en" | "it";
   image?: string;
   jsonLd?: unknown;
+  wide?: boolean;
 }
 
 const site = await getSite();
@@ -21,6 +22,7 @@ const {
   lang = "en",
   image = new URL("/og-default.png", Astro.site).href,
   jsonLd,
+  wide = false,
 } = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -31,6 +33,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline data-theme-script>
+      (() => {
+        const root = document.documentElement;
+        const save = (t) => { try { localStorage.setItem("theme", t); } catch {} };
+        try {
+          const t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") root.dataset.theme = t;
+        } catch {}
+        document.addEventListener("DOMContentLoaded", () => {
+          for (const btn of document.querySelectorAll("[data-theme-toggle]")) {
+            btn.addEventListener("click", () => {
+              const dark = root.dataset.theme
+                ? root.dataset.theme === "dark"
+                : matchMedia("(prefers-color-scheme: dark)").matches;
+              root.dataset.theme = dark ? "light" : "dark";
+              save(root.dataset.theme);
+            });
+          }
+        });
+      })();
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -72,7 +95,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <Header site={site} />
-    <main class="container">
+    <main class:list={[wide ? "container-wide" : "container"]}>
       <slot />
     </main>
     <Footer site={site} />

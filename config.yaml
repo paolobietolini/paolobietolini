@@ -12,6 +12,7 @@ site:
     The blog is in English, sometimes in Italian.
   nav:
     - { label: Posts, href: /posts/ }
+    - { label: Tags, href: /tags/ }
     - { label: Contact, href: "mailto:hello@paolobietolini.com", accent: true }
   socials:
     - { label: GitHub, href: https://github.com/paolobietolini }

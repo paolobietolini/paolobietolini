@@ -23,11 +23,37 @@ test('home has brand head tags', () => {
   assert.ok(html.includes('<html lang="en"'));
 });
 
-test('no client script on any page (JSON-LD data blocks only)', () => {
+test('client scripts are limited to JSON-LD, the theme script and the dataLayer', () => {
   for (const f of files('.html')) {
     const scripts = read(f).match(/<script[^>]*>/g) ?? [];
-    for (const tag of scripts) assert.ok(tag.includes('type="application/ld+json"'), `${f}: ${tag}`);
+    for (const tag of scripts) {
+      const ok = tag.includes('type="application/ld+json"') || tag.includes('data-theme-script') || tag === '<script type="module">';
+      assert.ok(ok, `${f}: ${tag}`);
+    }
+    assert.ok(scripts.filter((t) => t.includes('data-theme-script')).length <= 1, f);
+    assert.ok(scripts.filter((t) => t === '<script type="module">').length <= 1, f);
   }
+});
+
+test('theme script runs before stylesheets', () => {
+  const head = read('index.html').split('</head>')[0];
+  const theme = head.indexOf('data-theme-script');
+  const css = [head.indexOf('rel="stylesheet"'), head.indexOf('<style')].filter((i) => i >= 0);
+  assert.ok(theme >= 0, 'no theme script');
+  assert.ok(css.every((i) => theme < i), 'theme script after CSS');
+});
+
+test('theme script guards storage', () => {
+  const body = read('index.html').match(/<script[^>]*data-theme-script[^>]*>([\s\S]*?)<\/script>/)![1];
+  assert.ok(body.includes('try') && body.includes('localStorage'));
+});
+
+test('every page has a theme toggle', () => {
+  for (const f of files('.html')) assert.ok(read(f).includes('aria-label="Toggle colour theme"'), f);
+});
+
+test('header links to tags', () => {
+  assert.ok(read('index.html').includes('href="/tags/"'));
 });
 
 const jsonLd = (html: string) =>
