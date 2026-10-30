@@ -3,7 +3,16 @@
 export type PostLike = {
   id: string;
   body?: string;
-  data: { title: string; date: Date; updated?: Date; lang: 'en' | 'it'; description: string; draft: boolean };
+  data: {
+    title: string;
+    date: Date;
+    updated?: Date;
+    lang: 'en' | 'it';
+    description: string;
+    draft: boolean;
+    tags?: string[];
+    featured?: boolean;
+  };
 };
 
 // Front-matter dates parse as UTC midnight; formatting in local time can show the previous day.
@@ -33,4 +42,57 @@ export function latest<T>(posts: T[], n = 5): T[] {
 
 export function metaLine(p: PostLike): string {
   return `${formatDate(p.data.date)} · ${p.data.lang.toUpperCase()} · ${readingTime(p.body ?? '')} min`;
+}
+
+// Stable URL segment for a tag: "Consent Mode" and "consent mode" share /tags/consent-mode/.
+export function tagSlug(tag: string): string {
+  return tag
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export type TagGroup<T> = { tag: string; slug: string; posts: T[] };
+
+export function postsByTag<T extends PostLike>(posts: T[]): Map<string, TagGroup<T>> {
+  const map = new Map<string, TagGroup<T>>();
+  for (const p of posts) {
+    for (const tag of p.data.tags ?? []) {
+      const slug = tagSlug(tag);
+      const group = map.get(slug) ?? { tag, slug, posts: [] };
+      if (!group.posts.includes(p)) group.posts.push(p);
+      map.set(slug, group);
+    }
+  }
+  return map;
+}
+
+export function sortedTags<T>(map: Map<string, TagGroup<T>>): { tag: string; slug: string; count: number }[] {
+  return [...map.values()]
+    .map(({ tag, slug, posts }) => ({ tag, slug, count: posts.length }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+}
+
+// `posts` is newest first (the output of `published`); neighbours are in the post's language only.
+export function adjacentInLang<T extends PostLike>(posts: T[], post: T): { newer?: T; older?: T } {
+  const same = posts.filter((p) => p.data.lang === post.data.lang);
+  const i = same.indexOf(post);
+  return { newer: i > 0 ? same[i - 1] : undefined, older: i >= 0 ? same[i + 1] : undefined };
+}
+
+export function featured<T extends PostLike>(posts: T[], n = 4): T[] {
+  return posts.filter((p) => p.data.featured === true).slice(0, n);
+}
+
+export type Heading = { depth: number; slug: string; text: string };
+export type TocItem = Heading & { level: number };
+
+// Some posts start at ###, so nesting is relative to the shallowest heading kept.
+export function tocItems(headings: Heading[]): TocItem[] {
+  const kept = headings.filter((h) => h.depth >= 2 && h.depth <= 4);
+  if (kept.length < 2) return [];
+  const min = Math.min(...kept.map((h) => h.depth));
+  return kept.map((h) => ({ ...h, level: h.depth - min }));
 }

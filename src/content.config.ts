@@ -29,6 +29,8 @@ const posts = defineCollection({
     updated: z.coerce.date().refine(isPlainDay, 'updated must be a plain day (YYYY-MM-DD), without a time').optional(),
     description: z.string(),
     draft: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
   }),
 });
 
