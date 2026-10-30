@@ -302,3 +302,10 @@ test('chips wrap instead of widening the page', () => {
   assert.ok(!chip.includes('white-space:nowrap'), chip);
   assert.ok(chip.includes('overflow-wrap:anywhere'), chip);
 });
+
+test('theme toggle icons are 24px (spec)', () => {
+  const btn = read('index.html').match(/<button[^>]*data-theme-toggle[\s\S]*?<\/button>/)![0];
+  const svgs = btn.match(/<svg[^>]*>/g) ?? [];
+  assert.equal(svgs.length, 2);
+  for (const s of svgs) assert.ok(s.includes('width="24"') && s.includes('height="24"'), s);
+});
