@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostItem from '../../components/PostItem.astro';
+import { getPosts } from '../../lib/posts';
+import { postsByTag } from '../../lib/post-utils';
+
+export async function getStaticPaths() {
+  const groups = postsByTag(await getPosts());
+  return [...groups.values()].map(({ tag, slug, posts }) => ({ params: { tag: slug }, props: { tag, posts } }));
+}
+
+interface Props {
+  tag: string;
+  posts: CollectionEntry<'posts'>[];
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<Base title={`# ${tag}`} description={`Posts tagged ${tag}.`}>
+  <p class="eyebrow meta"><a href="/tags/">tags</a> · {posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+  <h1># {tag}</h1>
+  <ul class="post-list">
+    {posts.map((post) => <PostItem post={post} />)}
+  </ul>
+</Base>

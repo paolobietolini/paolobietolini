@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { metaLine } from '../lib/post-utils';
+import TagList from './TagList.astro';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -12,4 +13,5 @@ const { post } = Astro.props;
 <li class="post-item">
   <p class="meta">{metaLine(post)}</p>
   <a class="post-title" href={`/posts/${post.id}/`} lang={post.data.lang}>{post.data.title}</a>
+  <TagList tags={post.data.tags} size="sm" />
 </li>

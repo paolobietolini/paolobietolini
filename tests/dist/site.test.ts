@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
+import { tagSlug } from '../../src/lib/post-utils.ts';
 
 const DIST = 'dist';
 const read = (p: string) => readFileSync(join(DIST, p), 'utf8');
@@ -75,7 +76,15 @@ const POSTS = readdirSync(SRC)
   .filter((f) => f.endsWith('.md'))
   .map((f) => {
     const fm = parseYaml(readFileSync(join(SRC, f), 'utf8').split(/^---$/m)[1]);
-    return { file: f, title: String(fm.title), lang: fm.lang as string, draft: fm.draft === true };
+    return {
+      file: f,
+      title: String(fm.title),
+      lang: fm.lang as string,
+      draft: fm.draft === true,
+      description: String(fm.description),
+      tags: (fm.tags ?? []) as string[],
+      featured: fm.featured === true,
+    };
   });
 const PUBLISHED = POSTS.filter((p) => !p.draft);
 const DRAFTS = POSTS.filter((p) => p.draft);
@@ -174,4 +183,27 @@ test('each post page has article JSON-LD and its own OG image', () => {
     assert.equal(png.readUInt32BE(16), 1200, d);
     assert.equal(png.readUInt32BE(20), 630, d);
   }
+});
+
+const TAG_SLUGS = [...new Set(PUBLISHED.flatMap((p) => p.tags.map(tagSlug)))];
+
+test('tags index links every tag', () => {
+  const html = read('tags/index.html');
+  for (const slug of TAG_SLUGS) assert.ok(html.includes(`href="/tags/${slug}/"`), slug);
+});
+
+test('each tag page lists exactly its posts', () => {
+  for (const slug of TAG_SLUGS) {
+    const html = read(`tags/${slug}/index.html`);
+    const expected = PUBLISHED.filter((p) => p.tags.some((t) => tagSlug(t) === slug)).length;
+    assert.equal(html.match(/class="post-item"/g)?.length ?? 0, expected, slug);
+    assert.equal(html.match(/<h1[\s>]/g)?.length, 1, slug);
+  }
+});
+
+test('posts index links to tags', () => {
+  const html = read('posts/index.html');
+  const row = html.match(/<nav class="tag-filter"[\s\S]*?<\/nav>/);
+  assert.ok(row, 'no tag filter row');
+  assert.ok(row[0].includes('href="/tags/"'));
 });

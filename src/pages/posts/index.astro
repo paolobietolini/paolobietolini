@@ -2,12 +2,22 @@
 import Base from '../../layouts/Base.astro';
 import PostItem from '../../components/PostItem.astro';
 import { getPosts } from '../../lib/posts';
+import { postsByTag, sortedTags } from '../../lib/post-utils';
 
 const posts = await getPosts();
+const topTags = sortedTags(postsByTag(posts)).slice(0, 10);
 ---
 
 <Base title="Posts">
   <h1>Posts</h1>
+  <nav class="tag-filter" aria-label="Topics">
+    <ul class="tag-list tag-list-sm">
+      {topTags.map((t) => (
+        <li><a class="chip" href={`/tags/${t.slug}/`}><span aria-hidden="true">#</span> {t.tag}</a></li>
+      ))}
+    </ul>
+    <a class="meta" href="/tags/">All tags →</a>
+  </nav>
   {
     posts.length ? (
       <ul class="post-list">

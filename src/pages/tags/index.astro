@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts } from '../../lib/posts';
+import { postsByTag, sortedTags } from '../../lib/post-utils';
+
+const tags = sortedTags(postsByTag(await getPosts()));
+---
+
+<Base title="Tags" description="Posts grouped by topic.">
+  <p class="eyebrow meta">topics</p>
+  <h1>Tags</h1>
+  {
+    tags.length ? (
+      <ul class="tag-list tag-list-md">
+        {tags.map((t) => (
+          <li>
+            <a class="chip" href={`/tags/${t.slug}/`}>
+              <span aria-hidden="true">#</span> {t.tag} <span class="chip-count">· {t.count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="meta">No tags yet.</p>
+    )
+  }
+</Base>

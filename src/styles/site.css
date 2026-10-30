@@ -130,6 +130,16 @@ a.chip:hover { color: var(--ink); border-color: var(--muted); }
 }
 .post-title:hover { color: var(--accent); }
 
+/* Tags */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.tag-list-sm { gap: 6px; margin-top: 10px; }
+.tag-list-sm .chip { font-size: 12px; padding: 0 8px; background: transparent; color: var(--muted); }
+.chip-count { color: var(--muted); }
+.tag-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: 32px; }
+.tag-filter .tag-list-sm { margin: 0; }
+.tag-filter > a.meta { text-decoration: none; }
+.eyebrow a { color: inherit; text-decoration: none; }
+
 /* Post */
 .prose { max-width: var(--measure); overflow-wrap: anywhere; color: var(--text-2); }
 .prose > .meta { margin: 48px 0 0; }
