@@ -274,3 +274,9 @@ test('hero art is decorative and motion-safe', () => {
   assert.match(html, /<svg[^>]*class="hero-art"[^>]*aria-hidden="true"|<svg[^>]*aria-hidden="true"[^>]*class="hero-art"/);
   assert.ok(files('.css').some((f) => read(f).includes('prefers-reduced-motion')));
 });
+
+test('forced theme also sets color-scheme, so scrollbars and controls match', () => {
+  const css = files('.css').map(read).join('\n').replace(/[\s"']+/g, '');
+  assert.ok(css.includes(':root[data-theme=dark]{color-scheme:dark}'), 'dark');
+  assert.ok(css.includes(':root[data-theme=light]{color-scheme:light}'), 'light');
+});

@@ -14,6 +14,10 @@ main { overflow-wrap: anywhere; }
   padding: 0 16px;
 }
 
+/* The toggle can force a theme the OS does not use: native controls must follow it. */
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+
 /* Header */
 .site-header {
   position: sticky;
@@ -21,6 +25,10 @@ main { overflow-wrap: anywhere; }
   z-index: 10;
   background: var(--paper);
   border-bottom: 1px solid var(--rule);
+}
+/* On phones the header wraps to two rows; sticking it would eat the screen. */
+@media (max-width: 640px) {
+  .site-header { position: static; }
 }
 .site-header-inner {
   display: flex;
@@ -114,6 +122,7 @@ a.chip:hover { color: var(--ink); border-color: var(--muted); }
 /* Home */
 .eyebrow { color: var(--accent); margin: 0 0 8px; text-transform: lowercase; }
 .intro p { color: var(--text-2); max-width: var(--measure); }
+.container > .eyebrow:first-child { margin-top: 56px; }
 
 .hero {
   position: relative;
