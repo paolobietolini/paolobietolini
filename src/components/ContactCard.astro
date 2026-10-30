@@ -1,0 +1,18 @@
+---
+import type { Site } from '../lib/site';
+
+interface Props {
+  site: Site;
+}
+
+const { contact } = Astro.props.site;
+---
+
+<section class="contact-card" id="contact" aria-labelledby="contact-title">
+  <div>
+    <p class="eyebrow meta">contact</p>
+    <p class="contact-pitch" id="contact-title">{contact.pitch}</p>
+    {contact.note && <p class="meta">{contact.note}</p>}
+  </div>
+  <a class="btn-primary" href={contact.href}>{contact.label} <span aria-hidden="true">→</span></a>
+</section>

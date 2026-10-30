@@ -15,6 +15,12 @@ const config = defineCollection({
       intro: z.string(),
       nav: z.array(link.extend({ accent: z.boolean().optional() }).strict()),
       socials: z.array(link),
+      facts: z.array(z.object({ label: z.string(), value: z.string() }).strict()),
+      about: z.string(),
+      skills: z.array(z.object({ label: z.string(), items: z.array(z.string()) }).strict()),
+      contact: z
+        .object({ pitch: z.string(), note: z.string().optional(), label: z.string(), href: z.string() })
+        .strict(),
     })
     .strict(),
 });

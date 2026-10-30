@@ -1,0 +1,32 @@
+---
+import type { Site } from '../lib/site';
+import HeroArt from './HeroArt.astro';
+
+interface Props {
+  site: Site;
+}
+
+const { site } = Astro.props;
+const paragraphs = site.intro.trim().split(/\n\s*\n/);
+---
+
+<section class="hero">
+  <HeroArt />
+  <div class="hero-main">
+    <p class="eyebrow meta">{site.tagline}</p>
+    <h1>{site.name}</h1>
+    <div class="intro">
+      {paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+  <dl class="facts">
+    {
+      site.facts.map((f) => (
+        <div>
+          <dt class="meta">{f.label}</dt>
+          <dd>{f.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

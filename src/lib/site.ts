@@ -7,6 +7,10 @@ export type Site = {
   intro: string;
   nav: { label: string; href: string; accent?: boolean }[];
   socials: { label: string; href: string }[];
+  facts: { label: string; value: string }[];
+  about: string;
+  skills: { label: string; items: string[] }[];
+  contact: { pitch: string; note?: string; label: string; href: string };
 };
 
 export async function getSite(): Promise<Site> {

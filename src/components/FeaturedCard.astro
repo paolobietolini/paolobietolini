@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { metaLine } from '../lib/post-utils';
+import TagList from './TagList.astro';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="featured-card" lang={post.data.lang}>
+  <img src={`/og/${post.id}.png`} width="1200" height="630" loading="lazy" decoding="async" alt="" />
+  <div class="featured-card-body">
+    <p class="meta">{metaLine(post)}</p>
+    <h3><a class="featured-card-title" href={`/posts/${post.id}/`}>{post.data.title}</a></h3>
+    <p class="featured-card-desc">{post.data.description}</p>
+    <TagList tags={post.data.tags} size="sm" />
+  </div>
+</article>

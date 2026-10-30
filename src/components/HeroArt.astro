@@ -1,0 +1,30 @@
+---
+// Overlaid signal traces. Each wave repeats every 600 units and is drawn 1200 wide,
+// so sliding the group left by 600 loops seamlessly.
+const traces = [
+  { y: 150, amp: 34, cycles: 2, opacity: 0.25 },
+  { y: 185, amp: 22, cycles: 3, opacity: 0.18 },
+  { y: 215, amp: 48, cycles: 1, opacity: 0.14 },
+  { y: 240, amp: 16, cycles: 5, opacity: 0.2 },
+  { y: 270, amp: 30, cycles: 2, opacity: 0.12 },
+];
+
+function wave(y: number, amp: number, cycles: number): string {
+  const wavelength = 600 / cycles;
+  const pts: string[] = [];
+  for (let x = 0; x <= 1200; x += 6) {
+    pts.push(`${x},${(y + amp * Math.sin((2 * Math.PI * x) / wavelength)).toFixed(1)}`);
+  }
+  return `M${pts.join(' L')}`;
+}
+---
+
+<svg class="hero-art" aria-hidden="true" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" focusable="false">
+  <g class="hero-art-drift">
+    {
+      traces.map((t) => (
+        <path d={wave(t.y, t.amp, t.cycles)} opacity={t.opacity} fill="none" stroke="currentColor" vector-effect="non-scaling-stroke" />
+      ))
+    }
+  </g>
+</svg>

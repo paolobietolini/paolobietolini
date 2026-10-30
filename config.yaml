@@ -17,3 +17,25 @@ site:
   socials:
     - { label: GitHub, href: https://github.com/paolobietolini }
     - { label: LinkedIn, href: https://www.linkedin.com/in/paolobietolini }
+  # DRAFT — edit me: homepage facts, about, skills and contact card.
+  facts:
+    - { label: Focus, value: GA4 · server-side GTM · consent mode }
+    - { label: Also, value: data layer design · BigQuery · tracking audits }
+    - { label: Writing, value: English and Italian }
+    - { label: Based in, value: "TODO: city" }
+  about: |
+    I design and fix measurement setups: data layers, GTM web and server-side
+    containers, GA4 and consent. I care about how the data flows underneath,
+    not which button to click.
+
+    Lately I'm also learning C, which is where the hexdump and Game of Life
+    posts come from.
+  skills:
+    - { label: Analytics, items: [GA4, Adobe Analytics, BigQuery] }
+    - { label: Tag management, items: [GTM, Server-side GTM, Google Tag Gateway, Consent Mode v2] }
+    - { label: Engineering, items: [JavaScript, TypeScript, C, Docker, Astro] }
+  contact:
+    pitch: Need your tracking audited, rebuilt or explained?
+    note: I usually reply within a few days.
+    label: hello@paolobietolini.com
+    href: "mailto:hello@paolobietolini.com"

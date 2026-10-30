@@ -250,3 +250,27 @@ test('post header shows the description', () => {
     assert.equal(decode(sub).trim(), post.description, d);
   }
 });
+
+test('home has facts, about and contact', () => {
+  const html = read('index.html');
+  for (const s of ['<dl class="facts"', 'id="about"', 'id="contact"', 'href="mailto:hello@paolobietolini.com"']) {
+    assert.ok(html.includes(s), s);
+  }
+});
+
+test('home shows featured posts', () => {
+  const html = read('index.html');
+  const expected = Math.min(4, PUBLISHED.filter((p) => p.featured).length);
+  assert.equal(html.match(/class="featured-card"/g)?.length ?? 0, expected);
+});
+
+test('at most one primary button per page', () => {
+  for (const f of files('.html')) assert.ok((read(f).match(/class="btn-primary/g)?.length ?? 0) <= 1, f);
+  assert.equal(read('index.html').match(/class="btn-primary/g)?.length, 1);
+});
+
+test('hero art is decorative and motion-safe', () => {
+  const html = read('index.html');
+  assert.match(html, /<svg[^>]*class="hero-art"[^>]*aria-hidden="true"|<svg[^>]*aria-hidden="true"[^>]*class="hero-art"/);
+  assert.ok(files('.css').some((f) => read(f).includes('prefers-reduced-motion')));
+});

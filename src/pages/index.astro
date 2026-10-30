@@ -1,32 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostItem from '../components/PostItem.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedCard from '../components/FeaturedCard.astro';
+import About from '../components/About.astro';
+import ContactCard from '../components/ContactCard.astro';
 import { getSite } from '../lib/site';
 import { getPosts } from '../lib/posts';
-import { latest } from '../lib/post-utils';
+import { featured, latest } from '../lib/post-utils';
 import { homeJsonLd } from '../lib/structured-data';
 
 const site = await getSite();
-const paragraphs = site.intro.trim().split(/\n\s*\n/);
-const posts = latest(await getPosts());
+const posts = await getPosts();
+const picks = featured(posts);
+const recent = latest(posts);
 ---
 
-<Base jsonLd={homeJsonLd(site, Astro.site!.origin)}>
-  <p class="eyebrow meta">{site.tagline}</p>
-  <h1>{site.name}</h1>
-  <div class="intro">
-    {paragraphs.map((p) => <p>{p}</p>)}
-  </div>
+<Base jsonLd={homeJsonLd(site, Astro.site!.origin)} wide>
+  <Hero site={site} />
 
-  <h2>Latest</h2>
   {
-    posts.length ? (
-      <ul class="post-list">
-        {posts.map((post) => <PostItem post={post} />)}
-      </ul>
-    ) : (
-      <p class="meta">No posts yet.</p>
+    picks.length > 0 && (
+      <section class="home-section" aria-labelledby="featured-title">
+        <p class="eyebrow meta">featured · {picks.length}</p>
+        <h2 id="featured-title">Featured</h2>
+        <div class="featured-grid">
+          {picks.map((post) => <FeaturedCard post={post} />)}
+        </div>
+      </section>
     )
   }
-  <p><a href="/posts/">All posts →</a></p>
+
+  <section class="home-section home-latest" aria-labelledby="latest-title">
+    <p class="eyebrow meta">writing</p>
+    <h2 id="latest-title">Latest</h2>
+    {
+      recent.length ? (
+        <ul class="post-list">
+          {recent.map((post) => <PostItem post={post} />)}
+        </ul>
+      ) : (
+        <p class="meta">No posts yet.</p>
+      )
+    }
+    <p><a href="/posts/">All posts →</a></p>
+  </section>
+
+  <About site={site} />
+  <ContactCard site={site} />
 </Base>
