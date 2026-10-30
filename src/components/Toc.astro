@@ -1,0 +1,29 @@
+---
+import type { TocItem } from '../lib/post-utils';
+import { labels, type Lang } from '../lib/i18n';
+
+interface Props {
+  items: TocItem[];
+  lang: Lang;
+  variant: 'aside' | 'inline';
+}
+
+const { items, lang, variant } = Astro.props;
+const title = labels[lang].contents;
+const Wrapper = variant === 'aside' ? 'nav' : 'details';
+---
+
+{
+  items.length > 0 && (
+    <Wrapper class:list={['toc', `toc-${variant}`]} aria-label={variant === 'aside' ? title : undefined}>
+      {variant === 'aside' ? <p class="meta">{title}</p> : <summary class="meta">{title}</summary>}
+      <ol>
+        {items.map((h) => (
+          <li class={`toc-level-${h.level}`}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </Wrapper>
+  )
+}

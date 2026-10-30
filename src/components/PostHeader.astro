@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { metaLine } from '../lib/post-utils';
+import TagList from './TagList.astro';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+---
+
+<header class="post-header">
+  <h1>{post.data.title}</h1>
+  <p class="post-subtitle">{post.data.description}</p>
+  <div class="post-meta">
+    <p class="meta">{metaLine(post)}</p>
+    <TagList tags={post.data.tags} size="sm" />
+  </div>
+</header>

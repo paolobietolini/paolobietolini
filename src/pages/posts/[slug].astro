@@ -2,22 +2,29 @@
 import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { getPosts } from '../../lib/posts';
-import { metaLine } from '../../lib/post-utils';
+import { adjacentInLang, tocItems } from '../../lib/post-utils';
+import PostHeader from '../../components/PostHeader.astro';
+import Toc from '../../components/Toc.astro';
+import PostNav from '../../components/PostNav.astro';
+import TagList from '../../components/TagList.astro';
 import { getSite } from '../../lib/site';
 import { gitLastModified } from '../../lib/last-modified';
 import { isoDateTime, postJsonLd } from '../../lib/structured-data';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, ...adjacentInLang(posts, post) } }));
 }
 
 interface Props {
   post: CollectionEntry<'posts'>;
+  newer?: CollectionEntry<'posts'>;
+  older?: CollectionEntry<'posts'>;
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const toc = tocItems(headings);
 
 const site = await getSite();
 const origin = Astro.site!.origin;
@@ -27,10 +34,19 @@ const modified = post.data.updated ? isoDateTime(post.data.updated) : post.fileP
 const jsonLd = postJsonLd(post, { site, origin, url, image, modified });
 ---
 
-<Base title={post.data.title} description={post.data.description} lang={post.data.lang} image={image} jsonLd={jsonLd}>
-  <article class="prose">
-    <p class="meta">{metaLine(post)}</p>
-    <h1>{post.data.title}</h1>
-    <Content />
-  </article>
+<Base title={post.data.title} description={post.data.description} lang={post.data.lang} image={image} jsonLd={jsonLd} wide>
+  <div class:list={['post-layout', { 'has-toc': toc.length > 0 }]}>
+    <article class="prose">
+      <PostHeader post={post} />
+      <Toc items={toc} lang={post.data.lang} variant="inline" />
+      <div class="prose-body">
+        <Content />
+      </div>
+      <footer class="post-footer">
+        <TagList tags={post.data.tags} />
+        <PostNav newer={newer} older={older} lang={post.data.lang} />
+      </footer>
+    </article>
+    <Toc items={toc} lang={post.data.lang} variant="aside" />
+  </div>
 </Base>

@@ -142,7 +142,6 @@ a.chip:hover { color: var(--ink); border-color: var(--muted); }
 
 /* Post */
 .prose { max-width: var(--measure); overflow-wrap: anywhere; color: var(--text-2); }
-.prose > .meta { margin: 48px 0 0; }
 .prose pre {
   overflow-x: auto;
   overflow-wrap: normal;
@@ -158,6 +157,81 @@ a.chip:hover { color: var(--ink); border-color: var(--muted); }
 }
 .prose blockquote > :first-child { margin-top: 0; }
 .prose blockquote > :last-child { margin-bottom: 0; }
+
+/* Post page (Galaxy-style) */
+.post-layout { display: block; }
+.post-layout .prose { margin: 0 auto; }
+.post-header { margin: 56px 0 40px; }
+.post-header h1 { margin: 0; }
+.post-subtitle { margin: 16px 0 0; font-size: var(--fs-h3); line-height: var(--lh-h3); color: var(--muted); }
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 20px;
+}
+.post-meta .meta { margin: 0; }
+.post-meta .tag-list-sm { margin: 0; }
+.prose :is(h2, h3, h4) { scroll-margin-top: 88px; }
+
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 6px 0; line-height: 1.35; }
+.toc a { font-size: 14px; color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--ink); }
+.toc .toc-level-1 { padding-left: 12px; }
+.toc .toc-level-2 { padding-left: 24px; }
+.toc-inline {
+  margin: 0 0 32px;
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+}
+.toc-inline summary { cursor: pointer; }
+.toc-inline ol { margin-top: 8px; }
+.toc-aside { display: none; }
+.toc-aside > .meta { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+@media (min-width: 1080px) {
+  .post-layout.has-toc {
+    display: grid;
+    grid-template-columns: minmax(0, 68ch) 220px;
+    gap: 48px;
+    justify-content: center;
+  }
+  .post-layout.has-toc .prose { margin: 0; }
+  .toc-aside {
+    display: block;
+    position: sticky;
+    top: 88px;
+    align-self: start;
+    margin-top: 56px;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+    padding-left: 16px;
+    border-left: 1px solid var(--rule);
+  }
+  .toc-inline { display: none; }
+}
+
+.post-footer { margin-top: 56px; }
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+.post-nav a { display: flex; flex-direction: column; gap: 6px; max-width: 48%; text-decoration: none; }
+.post-nav-next { margin-left: auto; text-align: right; }
+.post-nav-title { font-weight: 700; color: var(--ink); line-height: var(--lh-h3); }
+.post-nav a:hover .post-nav-title { color: var(--accent); }
+@media (max-width: 560px) {
+  .post-nav { flex-direction: column; }
+  .post-nav a { max-width: none; }
+}
 
 /* Code: Shiki emits light colours inline and dark ones as --shiki-dark vars.
    The block background always comes from --surface. */

@@ -207,3 +207,46 @@ test('posts index links to tags', () => {
   assert.ok(row, 'no tag filter row');
   assert.ok(row[0].includes('href="/tags/"'));
 });
+
+const htmlLang = (html: string) => html.match(/<html lang="([a-z]+)"/)![1];
+const articleOf = (html: string) => html.match(/class="prose-body"[^>]*>([\s\S]*?)<footer class="post-footer"/)?.[1] ?? '';
+
+test('post nav stays in the post language', () => {
+  let links = 0;
+  for (const d of postPages()) {
+    const html = read(`posts/${d}/index.html`);
+    for (const m of html.matchAll(/<a[^>]*rel="(?:prev|next)"[^>]*href="\/posts\/([^/]+)\/"|<a[^>]*href="\/posts\/([^/]+)\/"[^>]*rel="(?:prev|next)"/g)) {
+      const target = decodeURIComponent(m[1] ?? m[2]);
+      assert.equal(htmlLang(read(`posts/${target}/index.html`)), htmlLang(html), `${d} → ${target}`);
+      links++;
+    }
+  }
+  assert.ok(links > 0, 'no post nav links at all');
+});
+
+test('posts with 2+ headings have a table of contents', () => {
+  for (const d of postPages()) {
+    const html = read(`posts/${d}/index.html`);
+    const body = articleOf(html);
+    assert.ok(body, `${d}: no prose-body`);
+    const n = body.match(/<h[234][\s>]/g)?.length ?? 0;
+    assert.equal(html.includes('class="toc'), n >= 2, `${d}: ${n} headings`);
+  }
+});
+
+test('italian posts use italian labels', () => {
+  const pages = postPages().map((d) => read(`posts/${d}/index.html`));
+  const it = pages.filter((h) => htmlLang(h) === 'it' && h.includes('class="toc'));
+  assert.ok(it.length > 0, 'no italian post with a toc');
+  for (const h of it) assert.ok(h.includes('Indice') && !h.includes('>Contents<'));
+});
+
+test('post header shows the description', () => {
+  const byTitle = new Map(PUBLISHED.map((p) => [p.title, p]));
+  for (const d of postPages()) {
+    const html = read(`posts/${d}/index.html`);
+    const post = byTitle.get(builtTitle(html))!;
+    const sub = html.match(/<p class="post-subtitle"[^>]*>([\s\S]*?)<\/p>/)?.[1] ?? '';
+    assert.equal(decode(sub).trim(), post.description, d);
+  }
+});

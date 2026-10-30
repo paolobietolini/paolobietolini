@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { labels, type Lang } from '../lib/i18n';
+
+interface Props {
+  newer?: CollectionEntry<'posts'>;
+  older?: CollectionEntry<'posts'>;
+  lang: Lang;
+}
+
+const { newer, older, lang } = Astro.props;
+const t = labels[lang];
+---
+
+{
+  (newer || older) && (
+    <nav class="post-nav" aria-label={`${t.previous} / ${t.next}`}>
+      {older ? (
+        <a class="post-nav-prev" rel="prev" href={`/posts/${older.id}/`}>
+          <span class="meta">« {t.previous}</span>
+          <span class="post-nav-title">{older.data.title}</span>
+        </a>
+      ) : (
+        <span />
+      )}
+      {newer && (
+        <a class="post-nav-next" rel="next" href={`/posts/${newer.id}/`}>
+          <span class="meta">{t.next} »</span>
+          <span class="post-nav-title">{newer.data.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}
