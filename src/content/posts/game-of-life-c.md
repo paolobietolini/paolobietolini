@@ -3,6 +3,7 @@ title: "Learning C: Conway's Game of Life, Three Times"
 date: 2026-06-12
 lang: en
 description: I challenged myself into writing the Conway's Game of Life three times, and improving at each iteration.
+tags: [c]
 ---
 
 ## Introduction

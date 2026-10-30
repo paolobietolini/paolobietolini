@@ -3,6 +3,7 @@ title: A NaN where a Long should be
 date: 2026-04-18
 lang: en
 description: A PySpark TypeError that looked like a schema bug was actually three steps upstream. Pandas can't represent what BigQuery hands it, (nested structs, nullable integers, timezone-aware timestamps, arbitrary-precision numerics) so every downstream line is a patch against a loss that happened at the moment pandas entered the pipeline. A walk to a twelve-line Arrow replacement, and the rule it points at.
+tags: [bigquery, spark, debugging]
 ---
 
 ## Introduction

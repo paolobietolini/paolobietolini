@@ -3,6 +3,8 @@ title: "[Case Study] Auditing Adobe Analytics data layers across 8 European mark
 date: 2026-03-06
 lang: en
 description: A real-world audit of Adobe Analytics data layers across 8 European markets. Comparing digitalData vs adobeDataLayer, page type taxonomies, product data population, and key takeaways for multi-market implementations.
+tags: [case-study, adobe-analytics, data-layer, audit]
+featured: true
 ---
 
 ## Why audit a data layer across markets?

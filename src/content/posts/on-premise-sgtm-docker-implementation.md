@@ -3,6 +3,7 @@ title: "Implementing Server-Side GTM with Docker: On-Premise Solution Guide"
 date: 2025-12-12
 lang: en
 description: Self-host GTM Server-Side with Docker and Caddy. Complete guide to reduce tracking costs from €50-150/month to €5-20/month with on-premise server-side tagging.
+tags: [server-side, gtm, docker]
 ---
 
 ## Introduction

@@ -3,6 +3,7 @@ title: Leaving the tracking pixel machine to learn C
 date: 2026-06-03
 lang: en
 description: Lately, it feels like 90% of what stakeholders care about nowadays is just compliance gymnastics and ad-platform feeding
+tags: [c, essay]
 ---
 
 ## Introduction

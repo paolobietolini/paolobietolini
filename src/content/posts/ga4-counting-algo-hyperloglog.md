@@ -3,6 +3,8 @@ title: "How GA4 Counts Millions of Users with 12 Kilobytes: The HyperLogLog Algo
 date: 2026-01-01
 lang: en
 description: "Open any GA4 report and look at Total Users. Then run COUNT(DISTINCT user_pseudo_id) in your BigQuery export. The numbers won't match. They're usually within a percent or two, and there is no setting that makes them. That gap isn't a bug, and it isn't sampling. It's a deliberate engineering decision: GA4 never actually counts your users. It estimates them, using a probabilistic data structure called HyperLogLog++ that can approximate the number of unique items in a set of any size using a fixed 12 KB of memory."
+tags: [ga4, algorithms]
+featured: true
 ---
 
 Open any GA4 report and look at **Total Users**. Then run `COUNT(DISTINCT user_pseudo_id)` on the same date range in your BigQuery export. The numbers won't match. They're usually within a percent or two — but they won't match, and there is no setting that makes them.

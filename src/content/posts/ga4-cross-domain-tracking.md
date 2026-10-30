@@ -3,6 +3,7 @@ title: "Cross-Domain Tracking in GA4: Setup Without Data Loss"
 date: 2026-01-10
 lang: en
 description: Set up GA4 cross-domain tracking correctly. Complete guide to prevent self-referrals, maintain session continuity, and preserve attribution across multiple domains.
+tags: [ga4, cross-domain]
 ---
 
 ## The Problem

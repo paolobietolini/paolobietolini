@@ -3,6 +3,7 @@ title: "Google Tag Manager Server-Side: Panoramica Tecnica"
 date: 2024-09-06
 lang: it
 description: "Panoramica tecnica di GTM Server-Side: architettura, vantaggi, costi di implementazione e considerazioni etiche sul tracciamento server-side."
+tags: [server-side, gtm]
 ---
 
 Il tracciamento server-side (SSGTM - Server-Side Google Tag Manager) rappresenta un cambio di paradigma nella raccolta dati: invece di eseguire script nel browser dell'utente, l'elaborazione avviene su server controllati dall'azienda. Questo offre vantaggi concreti in termini di controllo, performance e privacy, ma richiede anche maggiore complessità tecnica e costi di infrastruttura.

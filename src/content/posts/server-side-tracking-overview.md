@@ -3,6 +3,7 @@ title: "Google Tag Manager Server-Side: Technical Overview"
 date: 2024-09-06
 lang: en
 description: "GTM Server-Side technical guide: architecture, advantages, implementation costs, and ethical considerations. Learn when server-side tracking makes sense for your business."
+tags: [server-side, gtm]
 ---
 
 Server-side tracking (SSGTM - Server-Side Google Tag Manager) represents a paradigm shift in data collection: instead of running scripts in the user's browser, processing happens on company-controlled servers. This offers concrete advantages in terms of control, performance, and privacy, but also requires greater technical complexity and infrastructure costs.

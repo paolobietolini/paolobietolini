@@ -3,6 +3,7 @@ title: "GTM MCP Server: AI-Powered Google Tag Manager Automation"
 date: 2026-02-05
 lang: en
 description: Open-source MCP server connecting AI assistants to Google Tag Manager. Create tags, audit containers, and publish changes through natural conversation with Claude or ChatGPT.
+tags: [gtm, ai]
 ---
 
 ### TL;DR

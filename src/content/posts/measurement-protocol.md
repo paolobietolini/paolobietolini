@@ -3,6 +3,7 @@ title: Measurement Protocol. Cos'è e come funziona
 date: 2025-01-05
 lang: it
 description: Cos'è il Measurement Protocol di GA4 e come funziona. Guida completa con vantaggi, svantaggi, configurazione della chiave API e esempi pratici di invio dati.
+tags: [ga4, server-side]
 ---
 
 Google Analytics 4 (GA4) è una piattaforma potente per raccogliere e analizzare dati sul comportamento degli utenti. Ma cosa fare se vuoi inviare dati personalizzati a GA4, magari da un'applicazione o un sistema che non usa un browser? È qui che entra in gioco il Measurement Protocol.

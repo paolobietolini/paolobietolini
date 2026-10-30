@@ -3,6 +3,7 @@ title: Fixing Direct Traffic Inflation in GA4 for Single Page Applications
 date: 2021-01-30
 lang: en
 description: Fix inflated Direct traffic in GA4 for SPAs built with React, Next.js, or Nuxt.js. GTM implementation guide for proper page_referrer tracking on History Change events.
+tags: [ga4, spa, attribution]
 ---
 
 ## The Problem

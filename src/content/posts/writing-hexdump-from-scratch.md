@@ -3,6 +3,7 @@ title: Writing hexdump from scratch
 date: 2026-07-07
 lang: en
 description: "Say we want to inspect a corrupted file. To figure out its real type we can check its signature,  the first few bytes of the file. On Unix-like systems, the tool for the job is hexdump: a program that shows the hexadecimal content of a file or of a data stream."
+tags: [c]
 ---
 
 There's a video version of this post: [watch it on YouTube](https://www.youtube.com/watch?v=UhkKQR7jHBc).

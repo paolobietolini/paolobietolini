@@ -3,6 +3,7 @@ title: La Strategia UTM Definitiva per un'Attribuzione e un Reporting Impeccabil
 date: 2025-04-03
 lang: it
 description: La strategia UTM definitiva per un'attribuzione impeccabile in GA4. Come utilizzare i parametri UTM per tracciare e ottimizzare le performance delle campagne.
+tags: [attribution]
 ---
 
 Sfrutta la potenza dei [parametri](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) UTM per tracciare, analizzare e ottimizzare le tue performance pubblicitarie in maniera semplice ed efficace.

@@ -3,6 +3,7 @@ title: "Corso Google Tag Manager, Episodio 1: lo script e il Data Layer"
 date: 2026-07-11
 lang: it
 description: "Primo episodio del corso su Google Tag Manager: lo snippet riga per riga, il Data Layer come array su window, gli eventi di sistema e perché GTM conviene rispetto a gtag.js diretto."
+tags: [gtm, data-layer]
 ---
 
 📺 **Video completo:** [Corso Google Tag Manager, Episodio 1](https://www.youtube.com/watch?v=_gUw-1krK0k)

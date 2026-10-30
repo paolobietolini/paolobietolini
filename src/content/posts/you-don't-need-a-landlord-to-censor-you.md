@@ -3,6 +3,7 @@ title: You don't need a landlord to censor You
 date: 2026-08-29
 lang: en
 description: "We traded spaces we held for rented ones, and learned to censor ourselves for the landlord's algorithm. Why I keep a site of my own, and why owning the archive of your work matters more than owning the whole stack."
+tags: [essay, privacy]
 ---
 If you've ever read this blog, you know I work in analytics and data collection in MarTech. And if you've ever read this blog, I will never know it. Despite what I do for a living, this site has no way of tracking you. I even installed the Google Fonts on my own server so your IP address never reaches Google, and I keep no logs of who visits which page.
 

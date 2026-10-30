@@ -3,6 +3,7 @@ title: "GA4 Debug Mode: Complete Troubleshooting Guide"
 date: 2025-12-16
 lang: en
 description: Complete GA4 DebugView troubleshooting guide. Learn how to enable debug mode via GTM, Chrome extension, or code, and fix common issues when events are not showing.
+tags: [ga4, debugging]
 ---
 
 ## The Problem

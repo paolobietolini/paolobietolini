@@ -3,6 +3,8 @@ title: "[Case Study] Rebuilding analytics for a multi-domain tourism SPA"
 date: 2026-04-11
 lang: en
 description: Three domains, six advertising platforms, and years of accumulated tracking debt. How I redesigned the data layer, consolidated everything into GTM, and restored reliable conversion data across GA4, Meta, Google Ads, TikTok, LinkedIn, and Microsoft Ads.
+tags: [case-study, ga4, spa, cross-domain]
+featured: true
 ---
 
 A large-sized Italian tourism operator running hop-on-hop-off bus tours and experience bookings across three domains came to me with a common problem: their advertising platforms were not receiving reliable conversion data. Meta, LinkedIn, Google Ads, and TikTok dashboards told conflicting stories. Attribution was unreliable. Nobody trusted the numbers.

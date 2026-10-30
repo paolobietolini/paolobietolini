@@ -3,6 +3,7 @@ title: "GA4 Custom Dimensions & Metrics: When and How to Use Them"
 date: 2026-01-03
 lang: en
 description: GA4 custom dimensions and metrics guide. Learn when to use event-scoped, user-scoped, and item-scoped dimensions, with practical ecommerce examples and GTM implementation.
+tags: [ga4]
 ---
 
 ## When Do You Actually Need Custom Dimensions?

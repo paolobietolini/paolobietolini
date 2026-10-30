@@ -3,6 +3,7 @@ title: Arrow over the wire
 date: 2026-04-18
 lang: en
 description: "Four lines of Spark config to read BigQuery. Underneath: a gRPC read session, one stream per Spark partition, Arrow end-to-end, server-side column and filter pushdown, and dynamic rebalancing when executors finish early. A walkthrough of what those lines actually trigger — and why the middle format isn't replaced with something better, it's removed."
+tags: [bigquery, spark, performance]
 ---
 
 ## What the Spark BigQuery connector actually does

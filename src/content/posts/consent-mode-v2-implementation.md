@@ -3,6 +3,7 @@ title: "GTM Consent Mode V2: Complete Implementation Guide"
 date: 2025-12-22
 lang: en
 description: Implement Google Consent Mode V2 in GTM. Complete guide covering ad_user_data, ad_personalization parameters, basic vs advanced modes, CMP integration, and verification.
+tags: [consent, gtm]
 ---
 
 ## Why Consent Mode V2 Matters

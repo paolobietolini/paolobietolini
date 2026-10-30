@@ -3,6 +3,7 @@ title: "Google Tag Manager Server-Side: Implementazione  On-Premise con Docker"
 date: 2025-12-12
 lang: it
 description: "Implementare GTM Server-Side on-premise con Docker: setup container, configurazione DNS, reverse proxy Caddy, SSL automatico e deployment zero-downtime."
+tags: [server-side, gtm, docker]
 ---
 
 ## Introduzione

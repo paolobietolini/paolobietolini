@@ -3,6 +3,7 @@ title: "Google Tag Gateway vs Server-Side GTM: Which One Do You Need?"
 date: 2026-02-15
 lang: en
 description: "Google Tag Gateway vs server-side GTM compared: architecture, cost, setup, and when to use each. Includes real sGTM path-based implementation example."
+tags: [server-side, gtm]
 ---
 
 ## The Problem Both Solutions Solve

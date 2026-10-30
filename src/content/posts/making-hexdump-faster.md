@@ -3,6 +3,7 @@ title: Making hexdump 23 times faster (and what I've learned)
 date: 2026-08-03
 lang: en
 description: I made my from-scratch hexdump 23× faster on a 50 MiB file. The bit twiddling was the small part, most of the win was 128 million stdio calls becoming 800.
+tags: [c, performance]
 ---
 
 > Both versions are on my [Codeberg](https://codeberg.org/sprawz/c-learning/src/branch/main/projects/hexdump): `hexdumb.c` is the original, `hexdumb_buffered.c` is the one this post is about.

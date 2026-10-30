@@ -3,6 +3,7 @@ title: Un DataLayer Coerente per il Tuo E-commerce Come Superare i Limiti dello 
 date: 2025-04-04
 lang: it
 description: Come progettare un dataLayer coerente per l'e-commerce, superando i limiti dello standard Google GA4 con una struttura dati scalabile e manutenibile.
+tags: [data-layer, ga4, ecommerce]
 ---
 
 Lavorando nel Digital Marketing sai quanto sia cruciale avere un **tracciamento preciso e affidabile** dei dati per prendere decisioni strategiche e ottimizzare le performance. Tuttavia, chiunque abbia implementato il tracciamento ecommerce di GA4 si sarà scontrato con alcune problematiche che possono rendere la gestione dei dati più complessa del necessario.
