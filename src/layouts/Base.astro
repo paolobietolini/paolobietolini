@@ -41,14 +41,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           const t = localStorage.getItem("theme");
           if (t === "light" || t === "dark") root.dataset.theme = t;
         } catch {}
+        const os = matchMedia("(prefers-color-scheme: dark)");
+        const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : os.matches);
+        const sync = () => {
+          for (const btn of document.querySelectorAll("[data-theme-toggle]")) {
+            btn.setAttribute("aria-pressed", String(isDark()));
+          }
+        };
+        os.addEventListener("change", sync);
         document.addEventListener("DOMContentLoaded", () => {
+          sync();
           for (const btn of document.querySelectorAll("[data-theme-toggle]")) {
             btn.addEventListener("click", () => {
-              const dark = root.dataset.theme
-                ? root.dataset.theme === "dark"
-                : matchMedia("(prefers-color-scheme: dark)").matches;
-              root.dataset.theme = dark ? "light" : "dark";
+              root.dataset.theme = isDark() ? "light" : "dark";
               save(root.dataset.theme);
+              sync();
             });
           }
         });

@@ -105,3 +105,25 @@ test('tocItems keeps depth 2-4, levels relative to the shallowest, needs 2+', ()
   assert.deepEqual(tocItems([h(1), h(2), h(5), h(3)]).map((i) => i.depth), [2, 3]);
   assert.deepEqual(tocItems([h(1), h(5)]), []);
 });
+
+test('tagSlug spells out + and # so C++ and C# do not collapse into c', () => {
+  assert.equal(tagSlug('C++'), 'c-plus-plus');
+  assert.equal(tagSlug('C#'), 'c-sharp');
+  assert.equal(tagSlug('c'), 'c');
+});
+
+test('postsByTag rejects a tag with no usable characters', () => {
+  assert.throws(() => postsByTag([post('a', '2026-08-03', { tags: ['!!!'] })]), /"!!!".*empty/);
+});
+
+test('postsByTag rejects two different tags that share a slug, but merges case and spacing variants', () => {
+  assert.throws(
+    () => postsByTag([post('a', '2026-08-03', { tags: ['ga.4'] }), post('b', '2026-08-02', { tags: ['ga-4'] })]),
+    /"ga\.4".*"ga-4"/,
+  );
+  const ok = postsByTag([
+    post('a', '2026-08-03', { tags: ['Data Layer'] }),
+    post('b', '2026-08-02', { tags: ['data-layer'] }),
+  ]);
+  assert.equal(ok.get('data-layer')!.posts.length, 2);
+});

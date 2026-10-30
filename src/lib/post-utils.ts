@@ -47,12 +47,17 @@ export function metaLine(p: PostLike): string {
 // Stable URL segment for a tag: "Consent Mode" and "consent mode" share /tags/consent-mode/.
 export function tagSlug(tag: string): string {
   return tag
+    .replace(/\+/g, ' plus ')
+    .replace(/#/g, ' sharp ')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 }
+
+// Case and space/hyphen variants are the same tag; anything else sharing a slug is a typo or a clash.
+const spelling = (tag: string) => tag.trim().toLowerCase().replace(/[\s_-]+/g, '-');
 
 export type TagGroup<T> = { tag: string; slug: string; posts: T[] };
 
@@ -61,7 +66,11 @@ export function postsByTag<T extends PostLike>(posts: T[]): Map<string, TagGroup
   for (const p of posts) {
     for (const tag of p.data.tags ?? []) {
       const slug = tagSlug(tag);
+      if (!slug) throw new Error(`Tag "${tag}" (post ${p.id}) gives an empty URL slug`);
       const group = map.get(slug) ?? { tag, slug, posts: [] };
+      if (spelling(group.tag) !== spelling(tag)) {
+        throw new Error(`Tags "${group.tag}" and "${tag}" (post ${p.id}) both map to /tags/${slug}/`);
+      }
       if (!group.posts.includes(p)) group.posts.push(p);
       map.set(slug, group);
     }

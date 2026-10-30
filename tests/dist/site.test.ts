@@ -48,8 +48,14 @@ test('theme script guards storage', () => {
   assert.ok(body.includes('try') && body.includes('localStorage'));
 });
 
-test('every page has a theme toggle', () => {
-  for (const f of files('.html')) assert.ok(read(f).includes('aria-label="Toggle colour theme"'), f);
+test('every page has a theme toggle that exposes its state', () => {
+  for (const f of files('.html')) {
+    const btn = read(f).match(/<button[^>]*data-theme-toggle[^>]*>/)?.[0] ?? '';
+    assert.ok(btn.includes('aria-label="Dark theme"'), f);
+    assert.match(btn, /aria-pressed="(true|false)"/, f);
+  }
+  const script = read('index.html').match(/<script[^>]*data-theme-script[^>]*>([\s\S]*?)<\/script>/)![1];
+  assert.ok(script.includes('aria-pressed'), 'script never updates aria-pressed');
 });
 
 test('header links to tags', () => {
@@ -283,4 +289,16 @@ test('forced theme also sets color-scheme, so scrollbars and controls match', ()
 test('images inside posts never exceed the text column', () => {
   const css = files('.css').map(read).join('\n').replace(/\s+/g, '');
   assert.match(css, /\.proseimg\{[^}]*max-width:100%/);
+});
+
+const builtCss = () => files('.css').map(read).join('\n').replace(/\s+/g, '');
+
+test('no shadows in site CSS (brand rule)', () => {
+  assert.ok(!builtCss().includes('box-shadow'));
+});
+
+test('chips wrap instead of widening the page', () => {
+  const chip = builtCss().match(/\.chip\{[^}]*\}/)![0];
+  assert.ok(!chip.includes('white-space:nowrap'), chip);
+  assert.ok(chip.includes('overflow-wrap:anywhere'), chip);
 });
