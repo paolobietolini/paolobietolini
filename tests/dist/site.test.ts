@@ -24,28 +24,32 @@ test('home has brand head tags', () => {
   assert.ok(html.includes('<html lang="en"'));
 });
 
-test('client scripts are limited to JSON-LD and the theme script', () => {
+// The live server sends CSP `script-src 'self'`: inline scripts are blocked, so every
+// executable script must be a same-origin file. JSON-LD is data, not script.
+test('scripts are JSON-LD or the external theme script (CSP script-src self)', () => {
   for (const f of files('.html')) {
-    const scripts = read(f).match(/<script[^>]*>/g) ?? [];
-    for (const tag of scripts) {
-      const ok = tag.includes('type="application/ld+json"') || tag.includes('data-theme-script');
-      assert.ok(ok, `${f}: ${tag}`);
+    const scripts = [...read(f).matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)];
+    for (const [, attrs, body] of scripts) {
+      if (attrs.includes('type="application/ld+json"')) continue;
+      assert.ok(/src="\/theme\.js"/.test(attrs), `${f}: unexpected script <script${attrs}>`);
+      assert.equal(body.trim(), '', `${f}: inline code in an external script tag`);
     }
-    assert.ok(scripts.filter((t) => t.includes('data-theme-script')).length <= 1, f);
+    assert.equal(scripts.filter(([, a]) => a.includes('src="/theme.js"')).length, 1, f);
   }
 });
 
-test('theme script runs before stylesheets', () => {
+test('theme script loads before stylesheets', () => {
   const head = read('index.html').split('</head>')[0];
-  const theme = head.indexOf('data-theme-script');
+  const theme = head.indexOf('src="/theme.js"');
   const css = [head.indexOf('rel="stylesheet"'), head.indexOf('<style')].filter((i) => i >= 0);
   assert.ok(theme >= 0, 'no theme script');
   assert.ok(css.every((i) => theme < i), 'theme script after CSS');
 });
 
-test('theme script guards storage', () => {
-  const body = read('index.html').match(/<script[^>]*data-theme-script[^>]*>([\s\S]*?)<\/script>/)![1];
-  assert.ok(body.includes('try') && body.includes('localStorage'));
+test('theme script guards storage and exposes state', () => {
+  const js = read('theme.js');
+  assert.ok(js.includes('try') && js.includes('localStorage'));
+  assert.ok(js.includes('aria-pressed'));
 });
 
 test('every page has a theme toggle that exposes its state', () => {
@@ -54,8 +58,6 @@ test('every page has a theme toggle that exposes its state', () => {
     assert.ok(btn.includes('aria-label="Dark theme"'), f);
     assert.match(btn, /aria-pressed="(true|false)"/, f);
   }
-  const script = read('index.html').match(/<script[^>]*data-theme-script[^>]*>([\s\S]*?)<\/script>/)![1];
-  assert.ok(script.includes('aria-pressed'), 'script never updates aria-pressed');
 });
 
 test('header links to tags', () => {

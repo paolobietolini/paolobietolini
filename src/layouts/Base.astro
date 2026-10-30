@@ -33,34 +33,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script is:inline data-theme-script>
-      (() => {
-        const root = document.documentElement;
-        const save = (t) => { try { localStorage.setItem("theme", t); } catch {} };
-        try {
-          const t = localStorage.getItem("theme");
-          if (t === "light" || t === "dark") root.dataset.theme = t;
-        } catch {}
-        const os = matchMedia("(prefers-color-scheme: dark)");
-        const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : os.matches);
-        const sync = () => {
-          for (const btn of document.querySelectorAll("[data-theme-toggle]")) {
-            btn.setAttribute("aria-pressed", String(isDark()));
-          }
-        };
-        os.addEventListener("change", sync);
-        document.addEventListener("DOMContentLoaded", () => {
-          sync();
-          for (const btn of document.querySelectorAll("[data-theme-toggle]")) {
-            btn.addEventListener("click", () => {
-              root.dataset.theme = isDark() ? "light" : "dark";
-              save(root.dataset.theme);
-              sync();
-            });
-          }
-        });
-      })();
-    </script>
+    <script is:inline src="/theme.js"></script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
