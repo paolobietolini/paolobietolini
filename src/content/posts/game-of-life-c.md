@@ -22,7 +22,7 @@ This article describes what I learned over two days and three implementations.
 
 > I won't go deep into the game itself, to keep the article from ballooning and drifting from its purpose. The Wikipedia page covers the details very well; here I'll only state the general rules, as context for the code.
 
-<p><a href="https://commons.wikimedia.org/wiki/File:Gospers_glider_gun.gif#/media/File:Gospers_glider_gun.gif"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif" alt="Animation of Gosper's glider gun in Conway's Game of Life emitting a steady stream of gliders"></a><br>By <a href="//commons.wikimedia.org/wiki/User:LucasVB" title="User:LucasVB">Lucas Vieira</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=101736">Link</a></p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Gospers_glider_gun.gif#/media/File:Gospers_glider_gun.gif"><img src="/images/blog/2026/gospers-glider-gun.gif" width="250" height="180" loading="lazy" decoding="async" alt="Animation of Gosper's glider gun in Conway's Game of Life emitting a steady stream of gliders"></a><br>By <a href="//commons.wikimedia.org/wiki/User:LucasVB" title="User:LucasVB">Lucas Vieira</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=101736">Link</a></p>
 
 ## The World: a grid that wraps
 
@@ -55,7 +55,7 @@ Congratulations — courtesy of the modulo operator, our world has just become a
 
 The modulo of a division can never reach the divisor: with `MAXGRID` set to 10 (a 10×10 world), every time we're at 9 the next index is 0, and we start over.
 
-<p><a href="https://commons.wikimedia.org/wiki/File:Trefoil_knot_conways_game_of_life.gif#/media/File:Trefoil_knot_conways_game_of_life.gif"><img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Trefoil_knot_conways_game_of_life.gif" alt="Game of Life on the surface of a trefoil knot"></a><br>By <a href="//commons.wikimedia.org/w/index.php?title=User:Raphaelaugusto&amp;action=edit&amp;redlink=1" class="new" title="User:Raphaelaugusto (page does not exist)">Raphaelaugusto</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=52336285">Link</a></p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Trefoil_knot_conways_game_of_life.gif#/media/File:Trefoil_knot_conways_game_of_life.gif"><img src="/images/blog/2026/trefoil-knot-game-of-life.gif" width="316" height="280" loading="lazy" decoding="async" alt="Game of Life on the surface of a trefoil knot"></a><br>By <a href="//commons.wikimedia.org/w/index.php?title=User:Raphaelaugusto&amp;action=edit&amp;redlink=1" class="new" title="User:Raphaelaugusto (page does not exist)">Raphaelaugusto</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=52336285">Link</a></p>
 
 ## Playing God (or Oppenheimer, or the Bhagavad Gita)
 

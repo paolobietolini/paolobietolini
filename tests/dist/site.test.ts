@@ -330,3 +330,12 @@ test('404 page is a curl -i response with ways back', () => {
   assert.equal(html.match(/class="btn-primary/g)?.length, 1);
   assert.ok(!read('sitemap-0.xml').includes('404'));
 });
+
+// The server's CSP has img-src 'self', and the site makes no third-party requests.
+test('images are served from the site itself', () => {
+  for (const f of files('.html')) {
+    for (const [, src] of read(f).matchAll(/<img[^>]*\ssrc="([^"]+)"/g)) {
+      assert.ok(!/^(https?:)?\/\//.test(src), `${f}: external image ${src}`);
+    }
+  }
+});
