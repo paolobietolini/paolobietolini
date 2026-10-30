@@ -26,15 +26,24 @@ test('home has brand head tags', () => {
 
 // The live server sends CSP `script-src 'self'`: inline scripts are blocked, so every
 // executable script must be a same-origin file. JSON-LD is data, not script.
-test('scripts are JSON-LD or the external theme script (CSP script-src self)', () => {
+// Allowed: the blocking theme script and the relayer, bundled by Astro into /_astro/.
+test('scripts are JSON-LD, the theme script or the bundled relayer (CSP script-src self)', () => {
   for (const f of files('.html')) {
     const scripts = [...read(f).matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)];
     for (const [, attrs, body] of scripts) {
       if (attrs.includes('type="application/ld+json"')) continue;
-      assert.ok(/src="\/theme\.js"/.test(attrs), `${f}: unexpected script <script${attrs}>`);
-      assert.equal(body.trim(), '', `${f}: inline code in an external script tag`);
+      const ok = /src="\/theme\.js"/.test(attrs) || /type="module"[^>]*src="\/_astro\/[^"]+\.js"|src="\/_astro\/[^"]+\.js"[^>]*type="module"/.test(attrs);
+      assert.ok(ok, `${f}: unexpected script <script${attrs}>`);
+      assert.equal(body.trim(), '', `${f}: inline code in <script${attrs}>`);
     }
     assert.equal(scripts.filter(([, a]) => a.includes('src="/theme.js"')).length, 1, f);
+  }
+});
+
+test('every page loads the relayer bundle', () => {
+  for (const f of files('.html')) {
+    const srcs = [...read(f).matchAll(/<script type="module"[^>]*src="(\/_astro\/[^"]+\.js)"/g)].map((m) => m[1]);
+    assert.ok(srcs.some((src) => read(src.slice(1)).includes('relayer:change')), `${f}: no relayer bundle`);
   }
 });
 

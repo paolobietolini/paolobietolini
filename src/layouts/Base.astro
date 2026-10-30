@@ -34,6 +34,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline src="/theme.js"></script>
+    <script>
+      import { installRelayer } from "../lib/relayer";
+      installRelayer(window);
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
