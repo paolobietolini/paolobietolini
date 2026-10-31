@@ -357,7 +357,9 @@ test('no image or video file over 2 MB', () => {
 });
 
 test('cv page links to a generated PDF', () => {
-  assert.ok(read('cv/index.html').includes('href="/cv.pdf"'));
+  const html = read('cv/index.html');
+  assert.ok(html.includes('href="/cv.pdf"'));
+  assert.match(html, /download="PaoloBietolini_\d{4}\.pdf"/);
   const pdf = readFileSync(join(DIST, 'cv.pdf'));
   assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
   assert.ok(statSync(join(DIST, 'cv.pdf')).size > 10_000, 'cv.pdf looks empty');

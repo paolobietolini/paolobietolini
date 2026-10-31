@@ -5,6 +5,9 @@ import { getSite } from "../../lib/site";
 
 const site = await getSite();
 
+// Download filename, e.g. PaoloBietolini_2026.pdf (the file itself is served at /cv.pdf)
+const pdfName = `${site.name.replace(/\s+/g, "")}_${new Date().getFullYear()}.pdf`;
+
 const basedIn = site.facts.find((f) => f.label === "Based in")?.value;
 
 // Shown in this order; items without href render as plain text
@@ -137,11 +140,11 @@ const isoMonth = (date: Date) => date.toISOString().slice(0, 7);
 ---
 
 <Base title="Resumé" description="Professional résumé">
-    <p class="resume-actions" data-trackthank="Download PDF">
+    <p class="resume-actions" data-track="Download PDF">
         <a
             class="btn-primary"
             href="/cv.pdf"
-            download="paolo-bietolini-cv.pdf"
+            download={pdfName}
         >
             Download PDF <span aria-hidden="true">↓</span>
         </a>
