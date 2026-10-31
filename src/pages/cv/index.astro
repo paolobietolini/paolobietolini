@@ -1,0 +1,296 @@
+---
+import "../../styles/cv.css";
+import Base from "../../layouts/Base.astro";
+import { getSite } from "../../lib/site";
+
+const site = await getSite();
+
+const basedIn = site.facts.find((f) => f.label === "Based in")?.value;
+
+// Shown in this order; items without href render as plain text
+type Contact = { label: string; href?: string };
+const contacts: Contact[] = [
+    ...(basedIn ? [{ label: basedIn }] : []),
+    {
+        label: "paolo@paolobietolini.com",
+        href: "mailto:paolo@paolobietolini.com",
+    },
+    { label: "+48 882 732 086", href: "tel:+48882732086" },
+    {
+        label: "linkedin.com/in/paolobietolini",
+        href: "https://www.linkedin.com/in/paolobietolini",
+    },
+];
+
+type Role = {
+    title: string;
+    from: Date;
+    to: Date | null;
+    description: string[];
+};
+// One employer, one or more roles (most recent first)
+type Experience = {
+    organization: string;
+    location: string;
+    roles: Role[];
+};
+type Education = {
+    institution: string;
+    degree: string;
+    from: number;
+    to: number;
+};
+type Project = {
+    title: string;
+    role?: string;
+    description: string;
+    link?: URL;
+};
+
+const experiences: Experience[] = [
+    {
+        organization: "ALDI Tech Hub",
+        location: "Kraków, Poland",
+        roles: [
+            {
+                title: "Technical Digital Analyst",
+                from: new Date("2024-04-01"),
+                to: null,
+                description: [
+                    "Led analytics infrastructure consolidation across 7 ALDI showcase websites, standardizing Adobe Analytics taxonomies and reporting structures to enable consistent cross-market measurement.",
+                ],
+            },
+        ],
+    },
+    {
+        organization: "Dyson",
+        location: "Kraków, Poland",
+        roles: [
+            {
+                title: "Senior Digital Analyst",
+                from: new Date("2023-04-01"),
+                to: new Date("2024-04-01"),
+                description: [
+                    "Managed analytics implementation across 19 markets (out of ~40), running dual tracking stacks, GA4 and Adobe Analytics in parallel, with a migration from GTM to Adobe Tags.",
+                ],
+            },
+            {
+                title: "Digital Analyst",
+                from: new Date("2022-04-01"),
+                to: new Date("2023-04-01"),
+                description: [
+                    "Collected data from a variety of sources, including Google Analytics and Adobe Analytics, to provide insights into website traffic, user behaviour and conversion rates.",
+                ],
+            },
+        ],
+    },
+    {
+        organization: "Cognizant",
+        location: "Kraków, Poland",
+        roles: [
+            {
+                title: "Subject Matter Expert, Google Technical Solutions EMEA (TVC)",
+                from: new Date("2022-01-01"),
+                to: new Date("2022-04-01"),
+                description: [
+                    "Provided technical troubleshooting and solution design for complex Google Analytics and Tag Manager implementations across diverse technology stacks.",
+                ],
+            },
+            {
+                title: "Web Implementation Specialist, Senior Process Executive",
+                from: new Date("2021-03-01"),
+                to: new Date("2022-01-01"),
+                description: [
+                    "Implemented, enabled and supported Google services: Ads, Analytics, Merchant Center, Google Tag Manager.",
+                    "Tag implementation on CMS platforms: WordPress, PrestaShop, Magento, Joomla, Shoper, IAI.",
+                ],
+            },
+        ],
+    },
+];
+
+const education: Education[] = [
+    {
+        institution: "University of Rome Tor Vergata",
+        degree: "Bachelor's Degree, Humanistic Studies",
+        from: 2007,
+        to: 2012,
+    },
+];
+
+const projects: Project[] = [
+    {
+        title: "Google Tag Manager MCP",
+        description: "An MCP server to manage Google Tag Manager using AI",
+        link: new URL("/paolobietolini/gtm-mcp-server", "https://github.com"),
+    },
+];
+
+const formDate = (date: Date) =>
+    date.toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+    });
+// Machine-readable month precision, e.g. "2024-01"
+const isoMonth = (date: Date) => date.toISOString().slice(0, 7);
+---
+
+<Base title="Resumé" description="Professional résumé">
+    <p class="resume-actions" data-trackthank="Download PDF">
+        <a
+            class="btn-primary"
+            href="/cv.pdf"
+            download="paolo-bietolini-cv.pdf"
+        >
+            Download PDF <span aria-hidden="true">↓</span>
+        </a>
+    </p>
+    <article class="resume">
+        <header class="resume-header">
+            <h1>Paolo Bietolini</h1>
+            <address class="resume-contact">
+                <ul class="resume-contact-list">
+                    {
+                        contacts.map((contact) => (
+                            <li>
+                                {contact.href ? (
+                                    <a href={contact.href}>{contact.label}</a>
+                                ) : (
+                                    contact.label
+                                )}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </address>
+        </header>
+
+        <section class="resume-section" aria-labelledby="cv-experience">
+            <h2 id="cv-experience">Experience</h2>
+            <ol class="experience-list">
+                {
+                    experiences.map((experience) => (
+                        <li class="experience-item">
+                            <div class="experience-heading">
+                                <h3>{experience.organization}</h3>
+                                <p class="experience-location">
+                                    {experience.location}
+                                </p>
+                            </div>
+
+                            <ol class="experience-roles">
+                                {experience.roles.map((role) => (
+                                    <li class="experience-role">
+                                        <div class="experience-subheading">
+                                            <p class="experience-title">
+                                                {role.title}
+                                            </p>
+                                            <p class="experience-date">
+                                                <time
+                                                    datetime={isoMonth(role.from)}
+                                                >
+                                                    {formDate(role.from)}
+                                                </time>
+                                                {" – "}
+                                                {role.to ? (
+                                                    <time
+                                                        datetime={isoMonth(
+                                                            role.to,
+                                                        )}
+                                                    >
+                                                        {formDate(role.to)}
+                                                    </time>
+                                                ) : (
+                                                    "Present"
+                                                )}
+                                            </p>
+                                        </div>
+
+                                        {role.description.length > 0 && (
+                                            <ul class="experience-description">
+                                                {role.description.map(
+                                                    (description) => (
+                                                        <li>{description}</li>
+                                                    ),
+                                                )}
+                                            </ul>
+                                        )}
+                                    </li>
+                                ))}
+                            </ol>
+                        </li>
+                    ))
+                }
+            </ol>
+        </section>
+
+        <section class="resume-section" aria-labelledby="cv-education">
+            <h2 id="cv-education">Education</h2>
+            <ul class="experience-list">
+                {
+                    education.map((item) => (
+                        <li class="experience-item">
+                            <div class="experience-heading">
+                                <h3>{item.institution}</h3>
+                                <p class="experience-date">
+                                    <time datetime={String(item.from)}>
+                                        {item.from}
+                                    </time>
+                                    {" – "}
+                                    <time datetime={String(item.to)}>
+                                        {item.to}
+                                    </time>
+                                </p>
+                            </div>
+                            <p class="experience-title">{item.degree}</p>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+
+        <section class="resume-section" aria-labelledby="cv-projects">
+            <h2 id="cv-projects">Projects &amp; Activities</h2>
+            <ul class="project-list">
+                {
+                    projects.map((project) => (
+                        <li class="project-item">
+                            <div class="project-heading">
+                                <h3>{project.title}</h3>
+                                {project.role && (
+                                    <p class="project-role">{project.role}</p>
+                                )}
+                            </div>
+                            {project.link && (
+                                <p class="project-link">
+                                    <a href={project.link.href}>
+                                        {project.link.host}
+                                        {project.link.pathname}
+                                    </a>
+                                </p>
+                            )}
+                            <p class="project-description">
+                                {project.description}
+                            </p>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+
+        <section class="resume-section" aria-labelledby="cv-skills">
+            <h2 id="cv-skills">Skills</h2>
+            <dl class="skills-list">
+                {
+                    site.skills.map((skill) => (
+                        <div class="skills-item">
+                            <dt>{skill.label}</dt>
+                            <dd>{skill.items.join(", ")}</dd>
+                        </div>
+                    ))
+                }
+            </dl>
+        </section>
+    </article>
+</Base>

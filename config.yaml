@@ -14,6 +14,7 @@ site:
     - { label: Posts, href: /posts/ }
     - { label: About, href: /#about }
     - { label: Tags, href: /tags/ }
+    - { label: Resumé, href: /cv/ }
     - { label: Contact, href: "mailto:hello@paolobietolini.com", accent: true }
   socials:
     - { label: GitHub, href: https://github.com/paolobietolini }

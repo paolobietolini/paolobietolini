@@ -355,3 +355,10 @@ test('no image or video file over 2 MB', () => {
     assert.ok(size <= 2 * 1024 * 1024, `images/${f}: ${(size / 1048576).toFixed(1)} MB`);
   }
 });
+
+test('cv page links to a generated PDF', () => {
+  assert.ok(read('cv/index.html').includes('href="/cv.pdf"'));
+  const pdf = readFileSync(join(DIST, 'cv.pdf'));
+  assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
+  assert.ok(statSync(join(DIST, 'cv.pdf')).size > 10_000, 'cv.pdf looks empty');
+});

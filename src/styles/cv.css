@@ -1,0 +1,260 @@
+
+.resume {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+}
+
+/* Header */
+
+.resume-header {
+    text-align: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.resume-header h1 {
+    font-size: 18pt;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+}
+
+.resume-contact {
+    font-style: normal;
+    font-size: 10pt;
+}
+
+.resume-contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resume-contact-list li + li::before {
+    content: "•";
+    padding: 0 0.5em;
+}
+
+.resume-contact a {
+    color: inherit;
+}
+
+/* Sections */
+
+.resume-section {
+    margin-bottom: 1.25rem;
+}
+
+.resume-section h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.25rem;
+    margin: 0 0 0.75rem;
+}
+
+/* Experience */
+
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-item {
+    margin-bottom: 1rem;
+    break-inside: avoid;
+}
+
+.experience-heading,
+.experience-subheading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.experience-heading h3,
+.experience-title {
+    margin: 0;
+    font-size: 11pt;
+}
+
+.experience-heading h3 {
+    font-weight: 700;
+}
+
+.experience-title {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.experience-location,
+.experience-date {
+    text-align: right;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.experience-roles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-role + .experience-role {
+    margin-top: 0.6rem;
+}
+
+.experience-description {
+    padding-left: 1.5rem;
+    margin: 0.4rem 0 0;
+}
+
+.experience-description li {
+    padding-left: 0.2rem;
+    margin-bottom: 0.15rem;
+}
+
+/* Projects */
+
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-item {
+    margin-bottom: 1rem;
+    break-inside: avoid;
+}
+
+.project-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.project-heading h3 {
+    margin: 0;
+    font-size: 11pt;
+    font-weight: 700;
+}
+
+.project-role {
+    margin: 0;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.project-link,
+.project-description {
+    margin: 0.2rem 0 0;
+}
+
+.project-link a {
+    color: inherit;
+}
+
+/* Skills */
+
+.skills-list {
+    margin: 0;
+}
+
+.skills-item {
+    margin-bottom: 0.25rem;
+}
+
+.skills-item dt {
+    display: inline;
+    font-weight: 700;
+}
+
+.skills-item dt::after {
+    content: ": ";
+}
+
+.skills-item dd {
+    display: inline;
+    margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+    .resume {
+        padding: 1.5rem 1rem;
+    }
+
+    .experience-heading,
+    .experience-subheading,
+    .project-heading {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .experience-location,
+    .experience-date {
+        text-align: left;
+    }
+}
+
+/* Download link */
+
+.resume-actions {
+    text-align: center;
+    margin: 1rem 0 0;
+}
+
+/* Print: also used by scripts/build-pdf.mjs to render dist/cv.pdf */
+
+@page {
+    size: A4;
+    margin: 12mm 15mm 14mm;
+}
+
+@media print {
+    /* Only the résumé: drop the site chrome and the download link */
+    .site-header,
+    .site-footer,
+    .resume-actions {
+        display: none;
+    }
+
+    :root,
+    body {
+        background: #fff;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    main {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .resume {
+        max-width: none;
+        padding: 0;
+    }
+
+    .resume-section h2 {
+        break-after: avoid;
+    }
+
+    .experience-item,
+    .project-item {
+        break-inside: avoid;
+    }
+}
