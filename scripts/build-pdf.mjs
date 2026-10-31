@@ -11,7 +11,7 @@ try {
   const page = await browser.newPage({ colorScheme: 'light' });
   await page.goto(`http://localhost:${server.port}/cv/`, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  await page.pdf({ path: `dist/PaoloBietolini_${new Date().getFullYear()}.pdf`, preferCSSPageSize: true, printBackground: true });
+  await page.pdf({ path: 'dist/cv.pdf', preferCSSPageSize: true, printBackground: true });
 } finally {
   await browser.close();
   await server.stop();
