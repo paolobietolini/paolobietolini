@@ -16,7 +16,7 @@ const year = new Date().getFullYear();
       <span>{site.description}</span>
     </p>
     <nav class="meta" aria-label="Elsewhere">
-      {site.socials.map((s) => <a href={s.href}>{s.label}</a>)}
+      {site.socials.map((s) => <a href={s.href} rel={s.rel}>{s.label}</a>)}
       <a href="/rss.xml">RSS</a>
     </nav>
   </div>

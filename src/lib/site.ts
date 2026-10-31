@@ -1,17 +1,6 @@
-import { getEntry } from 'astro:content';
+import { getEntry, type CollectionEntry } from 'astro:content';
 
-export type Site = {
-  name: string;
-  tagline: string;
-  description: string;
-  intro: string;
-  nav: { label: string; href: string; accent?: boolean }[];
-  socials: { label: string; href: string }[];
-  facts: { label: string; value: string }[];
-  about: string;
-  skills: { label: string; items: string[] }[];
-  contact: { pitch: string; note?: string; label: string; href: string };
-};
+export type Site = CollectionEntry<'config'>['data'];
 
 export async function getSite(): Promise<Site> {
   const entry = await getEntry('config', 'site');

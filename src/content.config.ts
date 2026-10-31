@@ -3,7 +3,7 @@ import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { isPlainDay } from './lib/post-utils';
 
-const link = z.object({ label: z.string(), href: z.string() }).strict();
+const link = z.object({ label: z.string(), href: z.string(), rel: z.string().optional()}).strict();
 
 const config = defineCollection({
   loader: file('config.yaml'),

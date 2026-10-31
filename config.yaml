@@ -19,9 +19,10 @@ site:
   socials:
     - { label: GitHub, href: https://github.com/paolobietolini }
     - { label: LinkedIn, href: https://www.linkedin.com/in/paolobietolini }
+    - { label: Mastodon, href: https://hachyderm.io/@sprawz, rel: me}
   # DRAFT — edit me: homepage facts, about, skills and contact card.
   facts:
-    - { label: Focus, value: GA4 · server-side GTM · consent mode }
+    - { label: Focus, value: GA4 · server-side GTM · consent mode · Adobe Tags · Adobe Analytics}
     - { label: Also, value: data layer design · BigQuery · tracking audits }
     - { label: Writing, value: English and Italian }
     - { label: Based in, value: "Kraków, Poland" }
