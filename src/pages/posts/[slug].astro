@@ -7,6 +7,7 @@ import PostHeader from '../../components/PostHeader.astro';
 import Toc from '../../components/Toc.astro';
 import PostNav from '../../components/PostNav.astro';
 import TagList from '../../components/TagList.astro';
+import Comments from '../../components/Comments.astro';
 import { getSite } from '../../lib/site';
 import { gitLastModified } from '../../lib/last-modified';
 import { isoDateTime, postJsonLd } from '../../lib/structured-data';
@@ -46,6 +47,7 @@ const jsonLd = postJsonLd(post, { site, origin, url, image, modified });
         <TagList tags={post.data.tags} />
         <PostNav newer={newer} older={older} lang={post.data.lang} />
       </footer>
+      <Comments lang={post.data.lang} />
     </article>
     <Toc items={toc} lang={post.data.lang} variant="aside" />
   </div>

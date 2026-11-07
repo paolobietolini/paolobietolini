@@ -1,0 +1,74 @@
+---
+// Remark42 comments, self-hosted at comments.paolobietolini.com.
+// The live CSP blocks inline scripts, so config travels as data-* attributes and the
+// loader below is bundled by Astro into /_astro/ (see tests/dist/site.test.ts).
+interface Props {
+  lang: 'en' | 'it';
+}
+
+const { lang } = Astro.props;
+const host = 'https://comments.paolobietolini.com';
+// Thread key: canonical URL (no www, trailing slash), so every variant of a link
+// shares one thread.
+const url = new URL(Astro.url.pathname, Astro.site).href;
+
+const text = {
+  en: {
+    heading: 'Comments',
+    note: 'Comments are stored on my own server, not shared with anyone.',
+    privacy: 'How your data is handled',
+  },
+  it: {
+    heading: 'Commenti',
+    note: 'I commenti sono salvati sul mio server e non vengono condivisi con terzi.',
+    privacy: 'Come vengono trattati i tuoi dati',
+  },
+}[lang];
+---
+
+<section class="comments" aria-labelledby="comments-heading">
+  <h2 id="comments-heading">{text.heading}</h2>
+  <p class="comments-note">
+    {text.note} <a href="/privacy/">{text.privacy}</a>.
+  </p>
+  <div id="remark42" data-host={host} data-site="paolobietolini" data-url={url} data-locale={lang}></div>
+</section>
+
+<script>
+  type Theme = 'light' | 'dark';
+  type Remark42 = { changeTheme?: (theme: Theme) => void };
+
+  const el = document.getElementById('remark42');
+
+  if (el) {
+    const { host = '', site = '', url = '', locale = 'en' } = el.dataset;
+    const root = document.documentElement;
+    const os = matchMedia('(prefers-color-scheme: dark)');
+    // Same rule as public/theme.js: an explicit choice wins, otherwise follow the OS.
+    const theme = (): Theme =>
+      (root.dataset.theme ? root.dataset.theme === 'dark' : os.matches) ? 'dark' : 'light';
+
+    const w = window as typeof window & { remark_config?: object; REMARK42?: Remark42 };
+    w.remark_config = {
+      host,
+      site_id: site,
+      url,
+      locale,
+      theme: theme(),
+      components: ['embed'],
+      no_footer: true,
+      show_rss_subscription: false,
+    };
+
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = `${host}/web/embed.mjs`;
+    s.defer = true;
+    document.head.appendChild(s);
+
+    // Keep the iframe in step with the site's theme toggle and OS changes.
+    const sync = () => w.REMARK42?.changeTheme?.(theme());
+    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    os.addEventListener('change', sync);
+  }
+</script>

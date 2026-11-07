@@ -349,6 +349,9 @@ a.chip:hover { color: var(--ink); border-color: var(--muted); }
 }
 
 .post-footer { margin-top: 56px; }
+.comments { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.comments-note { font-size: 14px; color: var(--muted); }
+#remark42 { min-height: 160px; }
 .post-nav {
   display: flex;
   justify-content: space-between;
