@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Keep in sync with privacy/it.astro and with the server setup it describes
+// (Traefik access log filter + logrotate, Remark42 compose in /srv/remark42).
+const updated = '7 November 2026';
+---
+
+<Base title="Privacy" description="What data this site collects, why, and for how long.">
+  <article class="prose">
+    <h1>Privacy</h1>
+    <p class="meta">Last updated: {updated} · <a href="/privacy/it/" hreflang="it" lang="it">Italiano</a></p>
+
+    <p>
+      This is a personal blog. It has no analytics, no ads, no tracking and no cookie banner, because there is
+      nothing to consent to. The only personal data it handles is listed below.
+    </p>
+
+    <h2>Who is responsible</h2>
+    <p>
+      Paolo Bietolini, <a href="mailto:privacy@paolobietolini.com">privacy@paolobietolini.com</a>. Write to this
+      address for any question or request about your data.
+    </p>
+
+    <h2>Hosting</h2>
+    <p>
+      The site and the comments run on my own server at Infomaniak in Switzerland. Switzerland is recognised by
+      the EU as providing an adequate level of data protection.
+    </p>
+
+    <h2>Reading the blog</h2>
+    <ul>
+      <li>
+        <strong>No cookies.</strong> If you use the light/dark switch, your choice is saved in your browser's
+        local storage. It never leaves your device.
+      </li>
+      <li>
+        <strong>Server logs record only failed requests</strong> (pages not found, blocked or failed requests):
+        IP address, time, requested address and browser identifier. Successful page views are not logged.
+        These logs are kept for <strong>7 days</strong> to detect abuse and fix errors, then deleted
+        (legitimate interest, Art. 6(1)(f) GDPR).
+      </li>
+      <li>
+        The comments section loads from <code>comments.paolobietolini.com</code>, which is the same server.
+        No third-party service is contacted while you read.
+      </li>
+    </ul>
+
+    <h2>Comments</h2>
+    <p>
+      Comments use <a href="https://remark42.com">Remark42</a>, self-hosted on the server above. Commenting is
+      optional. When you comment, this is stored:
+    </p>
+    <ul>
+      <li>the name you choose, your comment, the page and the time;</li>
+      <li>
+        a scrambled (hashed) version of your IP address, used only to fight spam and abuse. The original address
+        is not stored;
+      </li>
+      <li>
+        if you sign in with email: your email address, linked to your account. It is used to send you a one-time
+        login code and is never shown publicly.
+      </li>
+    </ul>
+    <p>
+      <strong>Login emails</strong> are sent through <a href="https://mailbox.org/en/data-protection-privacy-policy">mailbox.org</a>
+      (Heinlein Hosting GmbH, Germany), my email provider.
+    </p>
+    <p>
+      <strong>Profile pictures:</strong> when you sign in with email, the comments server asks
+      <a href="https://automattic.com/privacy/">Gravatar</a> (Automattic Inc., USA) whether a picture exists for a
+      scrambled (hashed) form of your email address. If none exists, a generated picture is used. Your browser
+      does not contact Gravatar; the request comes from my server.
+    </p>
+    <p>
+      <strong>Cookies:</strong> only after you sign in, <code>comments.paolobietolini.com</code> sets two cookies
+      (<code>JWT</code> and <code>XSRF-TOKEN</code>) that keep you logged in and protect the form. They are strictly
+      necessary for the login you asked for. The comments widget may also keep display settings, such as sort
+      order, in your browser's local storage.
+    </p>
+    <p>
+      <strong>Legal basis:</strong> your request to publish a comment (Art. 6(1)(b) GDPR). Spam protection relies on
+      legitimate interest (Art. 6(1)(f)).
+    </p>
+    <p>
+      <strong>How long:</strong> comments stay as long as they are published. You can ask me to delete your
+      comments or your whole account at any time. Backups of the comments database are kept for
+      <strong>7 days</strong>, so deleted data disappears from backups within a week.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      You can ask for a copy of your data, its correction or deletion, and you can object to or restrict its
+      processing. Email <a href="mailto:privacy@paolobietolini.com">privacy@paolobietolini.com</a> and I'll reply within
+      30 days. You also have the right to complain to a data protection authority.
+    </p>
+  </article>
+</Base>

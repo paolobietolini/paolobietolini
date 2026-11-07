@@ -29,7 +29,7 @@ const text = {
 <section class="comments" aria-labelledby="comments-heading">
   <h2 id="comments-heading">{text.heading}</h2>
   <p class="comments-note">
-    {text.note} <a href="/privacy/">{text.privacy}</a>.
+    {text.note} <a href={lang === 'it' ? '/privacy/it/' : '/privacy/'}>{text.privacy}</a>.
   </p>
   <div id="remark42" data-host={host} data-site="paolobietolini" data-url={url} data-locale={lang}></div>
 </section>
